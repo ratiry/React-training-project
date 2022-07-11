@@ -3,6 +3,7 @@ import './App.scss';
 import Header from './components/Header';
 import SideBar from './components/SideBar';
 import Content from './components/content';
+
 function App() {
   return (
     <div className="App">
