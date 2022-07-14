@@ -1,8 +1,8 @@
 import logo from './logo.svg';
 import './App.scss';
-import Header from './components/Header';
-import SideBar from './components/SideBar';
-import Content from './components/content';
+import Header from './components/Header/Header';
+import SideBar from './components/Sidebar/SideBar.jsx';
+import Content from './components/Content/content.jsx';
 
 function App() {
   return (

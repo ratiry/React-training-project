@@ -1,0 +1,14 @@
+.content{
+  background: #61dafb;
+  flex-grow:0.8;
+  h4,p{
+    color:yellow;
+  }
+  h4{
+    font-size:35px;
+  }
+  p{
+    margin:10px auto;
+    max-width:50%;
+  }
+}
