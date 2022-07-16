@@ -2,7 +2,7 @@ import logo from './logo.svg';
 import './App.scss';
 import Header from './components/Header/Header';
 import SideBar from './components/Sidebar/SideBar.jsx';
-import Content from './components/Content/content.jsx';
+import Content from './components/Content/wall/content.jsx';
 
 function App() {
   return (
