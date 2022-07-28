@@ -1,18 +1,29 @@
 import logo from './logo.svg';
+import classes from './App.scss';
 import './App.scss';
 import Header from './components/Header/Header';
 import SideBar from './components/Sidebar/SideBar.jsx';
-import Content from './components/Content/wall/content.jsx';
-
-function App() {
+import Dialogs from './components/Content/Dialogs/Dialogs.jsx';
+import Wall from './components/Content/wall/wall';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Messages from './components/Content/Messages/Messages';
+function App(props) {
   return (
+    <BrowserRouter>
     <div className="App">
        <Header/>
       <main>
         <SideBar/>
-        <Content/>
+        <div className ='content'>
+          <Routes>
+            <Route path="/Wall*" element={<Wall DataPosts={props.DataPosts}/>}/>
+            <Route path="/Dialogs*" element={<Dialogs dataMessages={props.dataMessages} dataUsers={props.dataUsers}/>}/>
+            <Route path ='/Messages*' element={<Messages/>}/>
+          </Routes>
+        </div>
       </main>
     </div>
+    </BrowserRouter>
   );
 }
 

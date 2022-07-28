@@ -1,0 +1,25 @@
+.Dialogs{
+  .Dialogs_inner{
+    display:grid;
+    grid-template-columns: 1fr 2fr;
+    .Dialogs_items{
+      .item{
+        span{
+          font-size:30px;
+        }
+        padding:10px;
+        &.active{
+          color:gold;
+        }
+      }
+    }
+    .messages{
+      .message{
+        p{
+          color:yellow;
+          font-size:20px;
+        }
+      }
+    }
+  }
+}

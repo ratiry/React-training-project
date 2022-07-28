@@ -10,3 +10,16 @@
 main{
   display:flex;
 }
+
+.content{
+  background: #61dafb;
+  flex-grow:0.8;
+  h4,p,span{
+    color:yellow;
+  }
+
+  h4{
+    font-size:35px;
+  }
+}
+

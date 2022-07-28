@@ -1,20 +1,22 @@
 
+import { NavLink } from 'react-router-dom';
 import classes from './SideBar.module.scss';
 console.log(classes);
+const isActive=({isActive}) => ({color: isActive ? 'gold' : 'white'});
 const SideBar = function(){
   return(
     <div className = {classes.sidebar}>
-      <div className={`${classes.item} ${classes.active}`}>
+      <div className={classes.item} >
         <img src='https://www.svgrepo.com/show/303500/react-1-logo.svg' className="App-logo" alt="logo" />
-       <a href ='#1'>Lorem</a>
+       <NavLink to ='/Wall' style={isActive}>Wall</NavLink>
       </div>
       <div className={classes.item}>
         <img src='https://www.svgrepo.com/show/303500/react-1-logo.svg' className="App-logo" alt="logo" />
-        <a href ='#2'>Text</a>
+        <NavLink to ='/Dialogs' style={isActive}>Dialogs</NavLink>
       </div>
       <div className={classes.item}>
         <img src='https://www.svgrepo.com/show/303500/react-1-logo.svg' className="App-logo" alt="logo" />
-        <a href ='#3'>Text 2</a>
+        <NavLink to ='/Messages' style={isActive}>Messages</NavLink>
       </div>
   </div>
   );

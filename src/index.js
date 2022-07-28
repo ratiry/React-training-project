@@ -3,11 +3,27 @@ import ReactDOM from 'react-dom/client';
 import './index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+let dataUsers=[
+  {name:'Jem',id:1},
+  {name:'Jack',id:2},
+  {name:'Jerry',id:3},
+  {name:'ggggggggggggg',id:4, },
+];
+let dataMessages=[
+  { message:'Hi'},
+  { message:'gibberish'},
+  { message:'fdghj'},
+]
+let DataPosts= [
+  {name:'Slava',message:'dgddg', Likes:15},
+  {name:'Horward',message:'fgfgf',Likes :10},
+  {name:'Quizee',message:'ggggg',Likes:0},
+]
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <App dataUsers={dataUsers} dataMessages={dataMessages} DataPosts={DataPosts}/>
   </React.StrictMode>
 );
 
