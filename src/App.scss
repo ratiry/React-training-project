@@ -14,11 +14,8 @@ main{
 .content{
   background: #61dafb;
   flex-grow:0.8;
-  h4,p,span{
-    color:yellow;
-  }
-
   h4{
+    color:yellow;
     font-size:35px;
   }
 }

@@ -1,10 +1,19 @@
 import classes from './Textarea_wall.module.scss';
-function Textarea_wall(){
+import React from 'react';
+function Textarea_wall(props){
+  let textarea = React.useRef();
+  let addPost_0 =()=>{
+    let text= textarea.current.value;
+    props.addPost(text);
+    textarea.current.value='';
+  }
+  let Textarea_altering=()=>{
+  }
   return(
     <div className={classes.textarea_container}>
       <p className={classes.offer_to_write}>Write your own gibberish</p>
-      <textarea></textarea>
-      <button>send</button>
+      <textarea ref={textarea} onChange={Textarea_altering} value={props.new_text} ></textarea>
+      <button onClick={addPost_0}>send</button>
   </div>
   );
 };

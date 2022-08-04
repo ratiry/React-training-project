@@ -16,8 +16,8 @@ function App(props) {
         <SideBar/>
         <div className ='content'>
           <Routes>
-            <Route path="/Wall*" element={<Wall DataPosts={props.DataPosts}/>}/>
-            <Route path="/Dialogs*" element={<Dialogs dataMessages={props.dataMessages} dataUsers={props.dataUsers}/>}/>
+            <Route path="/Wall*" element={<Wall DataPosts={props.State.Wall.DataPosts} addPost ={props.addPost} new_text={props.new_text} />}/>
+            <Route path="/Dialogs*" element={<Dialogs dataMessages={props.State.Dialogs.dataMessages} dataUsers={props.State.Dialogs.dataUsers}/>}/>
             <Route path ='/Messages*' element={<Messages/>}/>
           </Routes>
         </div>
