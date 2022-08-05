@@ -3,8 +3,8 @@ import React from 'react';
 import User from './User/User';
 import Message from './Message/Message';
 const Dialogs =(props)=>{
-  let Messages_elements = props.dataMessages.map( (message) => <Message message={message.message} whose={message.whose} Name ={message.Name} />)
-  let Dialogs_elements = props.dataUsers.map( (name) => <User name={name.name} id={name.id} />)
+  let Messages_elements = props.Dialogs.dataMessages.map( (message) => <Message message={message.message} whose={message.whose} Name ={message.Name} />)
+  let Dialogs_elements = props.Dialogs.dataUsers.map( (name) => <User name={name.name} id={name.id} />)
   let textarea = React.useRef();
   let addMessage =()=>{
     props.addMessage();

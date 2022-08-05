@@ -4,6 +4,9 @@
   margin:10px auto;
   background:lightgreen;
   border-radius:50px;
+  p,span{
+    word-break:break-all;
+  }
   .avatar_wrapper{
     display:flex;
     align-items: center;

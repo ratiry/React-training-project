@@ -1,5 +1,7 @@
 
-import { rerenderEntireTree } from './../rerender';
+let rerenderEntireTree=()=>{
+  
+}
 let State ={
   Wall:{
     DataPosts:[
@@ -57,5 +59,8 @@ export let changeNewPostText=(value)=>{
 export let changeNewMessageText=(value)=>{
   State.Dialogs.new_text_Dialogs=value;
   rerenderEntireTree(State);
+}
+export let subscribe=(observer)=>{
+  rerenderEntireTree = observer;
 }
 export default State;
