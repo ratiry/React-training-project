@@ -1,7 +1,6 @@
 import classes  from './../Dialogs.module.scss';
 
 let Message =(props)=>{
-  console.log(props);
   if(props.whose=='my'){
     return(
       <div className ={classes.message_container + ' ' + classes.my_message}>

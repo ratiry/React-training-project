@@ -2,7 +2,6 @@
 import { NavLink } from 'react-router-dom';
 import classes from './SideBar.module.scss';
 import Friends from './Friends/Friends';
-console.log(classes);
 const isActive=({isActive}) => ({color: isActive ? 'gold' : 'white'});
 const SideBar = function(){
   return(

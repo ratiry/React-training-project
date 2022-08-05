@@ -7,7 +7,11 @@ const Dialogs =(props)=>{
   let Dialogs_elements = props.dataUsers.map( (name) => <User name={name.name} id={name.id} />)
   let textarea = React.useRef();
   let addMessage =()=>{
-    console.log(textarea.current.value);
+    props.addMessage();
+  }
+  let altering_textarea=()=>{
+    
+    props.changeNewMessageText(textarea.current.value);
   }
   return(
     <div className={classes.Dialogs}>
@@ -20,7 +24,7 @@ const Dialogs =(props)=>{
           { Messages_elements }
         </div>
         <div className={classes.textarea_container}>
-          <textarea ref={textarea}></textarea>
+          <textarea value={props.new_text_Dialogs} onChange={altering_textarea} ref={textarea}> </textarea>
           <button onClick={addMessage}>send</button>
         </div>
       </div>

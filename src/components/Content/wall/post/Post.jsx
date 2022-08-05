@@ -1,7 +1,6 @@
 
 import classes from './post.module.scss';
 let Post = function(props){
-  console.log(props);
   return(
     <div className={classes.post}>
       <div className={classes.avatar_wrapper}>

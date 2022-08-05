@@ -6,7 +6,7 @@ let Wall = function(props){
   return(
     <div className={classes.Wall}>
       <h4>Wall</h4>
-      <Textarea_wall addPost ={props.addPost} new_text={props.new_text} />
+      <Textarea_wall addPost ={props.addPost} new_text={props.new_text} changeNewPostText={props.changeNewPostText}/>
       <div className="posts">
          {Posts_Elements}
       </div>
