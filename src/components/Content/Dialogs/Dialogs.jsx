@@ -2,16 +2,27 @@ import classes from './Dialogs.module.scss';
 import React from 'react';
 import User from './User/User';
 import Message from './Message/Message';
+let addMessageActionCreator=()=>{
+  return{
+    type:'ADD-MESSAGE',
+  }
+}
+let changeNewMessageText=(value)=>{
+  return{
+    type:'CHANGE-NEW-MESSAGE-TEXT',
+    value:value
+  }
+}
 const Dialogs =(props)=>{
   let Messages_elements = props.Dialogs.dataMessages.map( (message) => <Message message={message.message} whose={message.whose} Name ={message.Name} />)
   let Dialogs_elements = props.Dialogs.dataUsers.map( (name) => <User name={name.name} id={name.id} />)
   let textarea = React.useRef();
   let addMessage =()=>{
-    props.addMessage();
+    props.dispatch(addMessageActionCreator());
   }
   let altering_textarea=()=>{
     
-    props.changeNewMessageText(textarea.current.value);
+    props.dispatch(changeNewMessageText(textarea.current.value));
   }
   return(
     <div className={classes.Dialogs}>
@@ -24,7 +35,7 @@ const Dialogs =(props)=>{
           { Messages_elements }
         </div>
         <div className={classes.textarea_container}>
-          <textarea value={props.new_text_Dialogs} onChange={altering_textarea} ref={textarea}> </textarea>
+          <textarea value={props.Dialogs.new_text_Dialogs} onChange={altering_textarea} ref={textarea}> </textarea>
           <button onClick={addMessage}>send</button>
         </div>
       </div>

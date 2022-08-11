@@ -1,13 +1,24 @@
 import classes from './Textarea_wall.module.scss';
 import React from 'react';
+let addPostActionCreator=()=>{
+  return{
+    type:'ADD-POST'
+  }
+}
+let addChangeNewPostTextActionCreator=(value)=>{
+  return{
+    type:'CHANGE-NEW-POST-TEXT',
+    value:value,
+  }
+}
 function Textarea_wall(props){
   let textarea = React.useRef();
   let addPost_0 =()=>{
-    // let text= textarea.current.value;
-    props.addPost();
+    debugger;
+    props.dispatch(addPostActionCreator());
   }
   let Textarea_altering=()=>{
-    props.changeNewPostText(textarea.current.value);
+    props.dispatch(addChangeNewPostTextActionCreator(textarea.current.value));
   }
   return(
     <div className={classes.textarea_container}>

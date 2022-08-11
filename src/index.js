@@ -11,7 +11,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
  let rerenderEntireTree=(State)=>{
   root.render(
     <React.StrictMode>
-      <App State={State} addPost={Store.addPost.bind(Store)} changeNewPostText={Store.changeNewPostText.bind(Store)} changeNewMessageText={Store.changeNewMessageText.bind(Store)} addMessage={Store.addMessage.bind(Store)}/>
+      <App State={State} dispatch={Store.dispatch.bind(Store)}/>
     </React.StrictMode>
   );
 }

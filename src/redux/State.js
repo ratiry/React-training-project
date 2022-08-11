@@ -29,41 +29,71 @@ let Store={
   getState(){
     return this._State;
   },
-  dispatch(){},
+  dispatch(action){
+    if(action.type==='ADD-POST'){
+      this._addPost();
+    }else if(action.type==='CHANGE-NEW-POST-TEXT'){
+     this._changeNewPostText(action.value); 
+    }else if(action.type==='ADD-MESSAGE'){
+      this._addMessage();
+    }else if(action.type ==='CHANGE-NEW-MESSAGE-TEXT'){
+      this._changeNewMessageText(action.value);
+    }
+  },
   subscribe(observer){
     this._rerenderEntireTree = observer;
   },
-  addPost(){
-    // debugger;
+  _addPost(){
     let post={
       message:this._State.Wall.new_text,
       Likes:0,
       id:4
     }
     this._State.Wall.DataPosts.push(post);
-    this.changeNewPostText('');
+    this._changeNewPostText('');
     this._rerenderEntireTree(this._State);
   },
-  addMessage(){
+  _addMessage(){
     let newMessage={
       message:this._State.Dialogs.new_text_Dialogs,
       whose:'my',
       Name:'Name'
     }
     this._State.Dialogs.dataMessages.push(newMessage);
-    this.changeNewMessageText('')
+    this._changeNewMessageText('')
     this._rerenderEntireTree(this._State)
   },
-  changeNewPostText(value){
+  _changeNewPostText(value){
     this._State.Wall.new_text=value;
     this._rerenderEntireTree(this._State); 
   },
-  changeNewMessageText(value){
+  _changeNewMessageText(value){
     this._State.Dialogs.new_text_Dialogs=value;
     this._rerenderEntireTree(this._State);
   },
 
 }
-
+let addMessageActionCreator=()=>{
+  return{
+    type:'ADD-MESSAGE',
+  }
+}
+let changeNewMessageText=(value)=>{
+  return{
+    type:'CHANGE-NEW-MESSAGE-TEXT',
+    value:value
+  }
+}
+let addPostActionCreator=()=>{
+  return{
+    type:'ADD-POST'
+  }
+}
+let addChangeNewPostTextActionCreator=(value)=>{
+  return{
+    type:'CHANGE-NEW-POST-TEXT',
+    value:value,
+  }
+}
 Window.Store = Store;
 export default Store;
