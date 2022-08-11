@@ -2,17 +2,8 @@ import classes from './Dialogs.module.scss';
 import React from 'react';
 import User from './User/User';
 import Message from './Message/Message';
-let addMessageActionCreator=()=>{
-  return{
-    type:'ADD-MESSAGE',
-  }
-}
-let changeNewMessageText=(value)=>{
-  return{
-    type:'CHANGE-NEW-MESSAGE-TEXT',
-    value:value
-  }
-}
+import { addMessageActionCreator } from '../../../redux/State';
+import { changeNewMessageText } from '../../../redux/State';
 const Dialogs =(props)=>{
   let Messages_elements = props.Dialogs.dataMessages.map( (message) => <Message message={message.message} whose={message.whose} Name ={message.Name} />)
   let Dialogs_elements = props.Dialogs.dataUsers.map( (name) => <User name={name.name} id={name.id} />)
