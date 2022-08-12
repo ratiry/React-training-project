@@ -1,7 +1,6 @@
-let ADD_POST='ADD-POST';
-let CHANGE_NEW_MESSAGE_TEXT = 'CHANGE-NEW-MESSAGE-TEXT';
-let CHANGE_NEW_POST_TEXT = 'CHANGE-NEW-POST-TEXT';
-let ADD_MESSAGE = 'ADD-MESSAGE';
+
+import { Dialogs_reducer } from './Dialogs-reducer';
+import { Wall_reducer } from './Wall-reducer';
 let Store={
   _State :{
    Wall:{
@@ -29,75 +28,18 @@ let Store={
      new_text_Dialogs:''
    },
  },
+ subscribe(observer){
+  this._rerenderEntireTree = observer;
+},
  _rerenderEntireTree(){},
  getState(){
    return this._State;
  },
  dispatch(action){
-   if(action.type===ADD_POST){
-     this._addPost();
-   }else if(action.type===CHANGE_NEW_POST_TEXT){
-    this._changeNewPostText(action.value); 
-   }else if(action.type===ADD_MESSAGE){
-     this._addMessage();
-   }else if(action.type ===CHANGE_NEW_MESSAGE_TEXT){
-     this._changeNewMessageText(action.value);
-   }
+  this._State.Wall= Wall_reducer(this._State.Wall,action);
+  this._State.Dialogs= Dialogs_reducer(this._State.Dialogs,action);
+  this._rerenderEntireTree(this._State);
  },
- subscribe(observer){
-   this._rerenderEntireTree = observer;
- },
- _addPost(){
-   let post={
-     message:this._State.Wall.new_text,
-     Likes:0,
-     id:4
-   }
-   this._State.Wall.DataPosts.push(post);
-   this._changeNewPostText('');
-   this._rerenderEntireTree(this._State);
- },
- _addMessage(){
-   let newMessage={
-     message:this._State.Dialogs.new_text_Dialogs,
-     whose:'my',
-     Name:'Name'
-   }
-   this._State.Dialogs.dataMessages.push(newMessage);
-   this._changeNewMessageText('')
-   this._rerenderEntireTree(this._State)
- },
- _changeNewPostText(value){
-   this._State.Wall.new_text=value;
-   this._rerenderEntireTree(this._State); 
- },
- _changeNewMessageText(value){
-   this._State.Dialogs.new_text_Dialogs=value;
-   this._rerenderEntireTree(this._State);
- },
-
-}
-export let addMessageActionCreator=()=>{
- return{
-   type:ADD_MESSAGE,
- }
-} 
-export let changeNewMessageText=(value)=>{
- return{
-   type:CHANGE_NEW_MESSAGE_TEXT,
-   value:value
- }
-}
-export let addPostActionCreator=()=>{
- return{
-   type: ADD_POST
- }
-}
-export let addChangeNewPostTextActionCreator=(value)=>{
- return{
-   type: CHANGE_NEW_POST_TEXT,
-   value:value,
- }
 }
 Window.Store = Store;
 export default Store;
