@@ -1,6 +1,22 @@
 let CHANGE_NEW_MESSAGE_TEXT = 'CHANGE-NEW-MESSAGE-TEXT';
 let ADD_MESSAGE = 'ADD-MESSAGE';
-export const Dialogs_reducer=(State,action)=>{
+let initialization={
+  dataUsers:[
+    {name:'Jem',id:1},
+    {name:'Jack',id:2},
+    {name:'Jerry',id:3},
+    {name:'Quizzy',id:4, },
+  ],
+  dataMessages:[
+    { message:'Hi' , whose:'my',Name:'Name'},
+    { message:'Hi' , whose:'my',Name:'Name'},
+    { message:'Hi' , whose:'my',Name:'Name'},
+    { message:'gibberish', whose:'coversator',Name:'Name'},
+    { message:'fdghj', whose:'conversator', Name:'Name'},
+  ],
+  new_text_Dialogs:''
+}
+export const Dialogs_reducer=(State=initialization,action)=>{
  switch(action.type){
     case ADD_MESSAGE:
       let newMessage={

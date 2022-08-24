@@ -11,7 +11,6 @@ const Dialogs =(props)=>{
     props.dispatch(addMessageActionCreator());
   }
   let altering_textarea=()=>{
-    
     props.dispatch(changeNewMessageText(textarea.current.value));
   }
   return(

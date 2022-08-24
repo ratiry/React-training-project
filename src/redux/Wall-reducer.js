@@ -1,6 +1,14 @@
 let ADD_POST='ADD-POST';
 let CHANGE_NEW_POST_TEXT = 'CHANGE-NEW-POST-TEXT';
-export const Wall_reducer=(State,action)=>{
+let initialization ={
+  DataPosts:[
+    {message:'dgddg', Likes:1500, id:1},
+    {message:'fgfgf',Likes :10, id:2},
+    {message:'ggggg',Likes:0, id:3},
+  ],
+  new_text:'hh',
+}
+export const Wall_reducer=(State=initialization,action)=>{
   switch(action.type){
     case ADD_POST:
       let post={
