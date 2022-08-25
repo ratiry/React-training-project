@@ -8,8 +8,8 @@ import Wall from './components/Content/wall/wall';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Messages from './components/Content/Messages/Messages';
 import Dialogs_container from './components/Content/Dialogs/Dialogs_container';
+import Wall_container from './components/Content/wall/wall_container';
 function App(props) {
-  debugger
   return (
     <BrowserRouter>
     <div className="App">
@@ -18,8 +18,7 @@ function App(props) {
         <SideBar/>
         <div className ='content'>
           <Routes>
-            <Route path="/Wall*" element={<Wall Wall={props.Store.getState().Wall} 
-            dispatch={props.Store.dispatch} />}/>
+            <Route path="/Wall*" element={<Wall_container Store={props.Store} />}/>
 
             <Route path="/Dialogs*" element={<Dialogs_container  Store={props.Store}/>}/>
             <Route path ='/Messages*' element={<Messages/>}/>

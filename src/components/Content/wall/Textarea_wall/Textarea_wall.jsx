@@ -1,13 +1,12 @@
 import classes from './Textarea_wall.module.scss';
 import React from 'react';
-import { addChangeNewPostTextActionCreator,addPostActionCreator } from './../../../../redux/Wall-reducer';
 function Textarea_wall(props){
   let textarea = React.useRef();
   let addPost_0 =()=>{
-    props.dispatch(addPostActionCreator());
+    props.addPost_0();
   }
   let Textarea_altering=()=>{
-    props.dispatch(addChangeNewPostTextActionCreator(textarea.current.value));
+    props.Textarea_altering(textarea.current.value);
   }
   return(
     <div className={classes.textarea_container}>
