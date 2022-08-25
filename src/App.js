@@ -18,12 +18,10 @@ function App(props) {
         <SideBar/>
         <div className ='content'>
           <Routes>
-            <Route path="/Wall*" element={<Wall Wall={props.State.Wall} 
-            dispatch={props.dispatch} />}/>
+            <Route path="/Wall*" element={<Wall Wall={props.Store.getState().Wall} 
+            dispatch={props.Store.dispatch} />}/>
 
-            <Route path="/Dialogs*" element={<Dialogs_container 
-            Dialogs={props.State.Dialogs} 
-           dispatch={props.dispatch}/>}/>
+            <Route path="/Dialogs*" element={<Dialogs_container  Store={props.Store}/>}/>
             <Route path ='/Messages*' element={<Messages/>}/>
           </Routes>
         </div>

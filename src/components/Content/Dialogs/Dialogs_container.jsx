@@ -5,17 +5,17 @@ import Message from './Message/Message';
 import { addMessageActionCreator,changeNewMessageText } from '../../../redux/Dialogs-reducer'; 
 import Dialogs from './Dialogs';
 const Dialogs_container =(props)=>{
-  let Messages_elements = props.Dialogs.dataMessages.map( (message) => <Message message={message.message} whose={message.whose} Name ={message.Name} />)
-  let Dialogs_elements = props.Dialogs.dataUsers.map( (name) => <User name={name.name} id={name.id} />)
+  let Messages_elements = props.Store.getState().Dialogs.dataMessages.map( (message) => <Message message={message.message} whose={message.whose} Name ={message.Name} />)
+  let Dialogs_elements = props.Store.getState().Dialogs.dataUsers.map( (name) => <User name={name.name} id={name.id} />)
   let textarea = React.useRef();
   let addMessage =()=>{
-    props.dispatch(addMessageActionCreator());
+    props.Store.dispatch(addMessageActionCreator());
   }
   let altering_textarea=(text)=>{
-    props.dispatch(changeNewMessageText(text));
+    props.Store.dispatch(changeNewMessageText(text));
   }
   return(
-    <Dialogs addMessage={addMessage} altering_textarea={altering_textarea} Dialogs={props.Dialogs} />
+    <Dialogs addMessage={addMessage} altering_textarea={altering_textarea} Dialogs={props.Store.getState().Dialogs} />
   );
 }
 export default Dialogs_container;
