@@ -8,10 +8,10 @@ const Dialogs =(props)=>{
   let Dialogs_elements = props.Dialogs.dataUsers.map( (name) => <User name={name.name} id={name.id} />)
   let textarea = React.useRef();
   let addMessage =()=>{
-    props.dispatch(addMessageActionCreator());
+    props.addMessage();
   }
   let altering_textarea=()=>{
-    props.dispatch(changeNewMessageText(textarea.current.value));
+    props.altering_textarea(textarea.current.value);
   }
   return(
     <div className={classes.Dialogs}>
