@@ -18,9 +18,9 @@ function App(props) {
         <SideBar/>
         <div className ='content'>
           <Routes>
-            <Route path="/Wall*" element={<Wall_container Store={props.Store} />}/>
+            <Route path="/Wall*" element={<Wall_container  />}/>
 
-            <Route path="/Dialogs*" element={<Dialogs_container  Store={props.Store}/>}/>
+            <Route path="/Dialogs*" element={<Dialogs_container/>}/>
             <Route path ='/Messages*' element={<Messages/>}/>
           </Routes>
         </div>

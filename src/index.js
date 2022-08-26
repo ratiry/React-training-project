@@ -6,12 +6,15 @@ import reportWebVitals from './reportWebVitals';
 import Store from './redux/redux-strore.js';
 import './index.scss';
 import App from './App';
-
+import { Provider } from './context';
+import Store_context from './context';
 const root = ReactDOM.createRoot(document.getElementById('root'));
  let rerenderEntireTree=(State)=>{
   root.render(
     <React.StrictMode>
-      <App Store={Store} />
+      <Provider Store={Store}>
+          <App  />
+      </Provider>
     </React.StrictMode>
   );
 }
@@ -19,7 +22,7 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 rerenderEntireTree(Store.getState());  
 Store.subscribe(()=>{
   let state= Store.getState();
-  rerenderEntireTree(state);
+  rerenderEntireTree();
 })
 
 reportWebVitals();
