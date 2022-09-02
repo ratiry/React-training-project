@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import classes from './SideBar.module.scss';
 import Friends from './Friends/Friends';
 const isActive=({isActive}) => ({color: isActive ? 'gold' : 'white'});
-const SideBar = function(){
+const SideBar = function(props){
   return(
     <div className = {classes.sidebar}>
       <div className={classes.item} >
@@ -18,7 +18,7 @@ const SideBar = function(){
         <img src='https://www.svgrepo.com/show/303500/react-1-logo.svg' className="App-logo" alt="logo" />
         <NavLink to ='/Messages' style={isActive}>Messages</NavLink>
       </div>
-      <Friends/>
+      <Friends Friends={props.SideBar.Friends}/>
   </div>
   );
 }

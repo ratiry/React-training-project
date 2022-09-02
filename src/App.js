@@ -9,13 +9,14 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Messages from './components/Content/Messages/Messages';
 import Dialogs_container from './components/Content/Dialogs/Dialogs_container';
 import Wall_container from './components/Content/wall/wall_container';
+import SideBar_container from './components/Sidebar/SideBar_container';
 function App(props) {
   return (
     <BrowserRouter>
     <div className="App">
        <Header/>
       <main>
-        <SideBar/>
+        <SideBar_container/>
         <div className ='content'>
           <Routes>
             <Route path="/Wall*" element={<Wall_container  />}/>
