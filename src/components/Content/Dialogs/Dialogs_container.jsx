@@ -1,26 +1,43 @@
 import React from 'react';
-import Store_context from '../../../context';
 import { addMessageActionCreator,changeNewMessageText } from '../../../redux/Dialogs-reducer'; 
 import Dialogs from './Dialogs';
+import { connect } from 'react-redux';
 
-const Dialogs_container =(props)=>{
+// const Dialogs_container =(props)=>{
 
-  return(
-    <Store_context.Consumer>
-      {
-        (Store)=>{
+//   return(
+//     <Store_context.Consumer>
+//       {
+//         (Store)=>{
 
-          debugger;
-          let addMessage =()=>{
-            Store.dispatch(addMessageActionCreator());
-          }
-          let altering_textarea=(text)=>{
-            Store.dispatch(changeNewMessageText(text));
-          }
-          return <Dialogs addMessage={addMessage} altering_textarea={altering_textarea} Dialogs={Store.getState().Dialogs} /> 
-        }
-      }
-   </Store_context.Consumer>
-  );
+//           let addMessage =()=>{
+//             Store.dispatch(addMessageActionCreator());
+//           }
+//           let altering_textarea=(text)=>{
+//             Store.dispatch(changeNewMessageText(text));
+//           }
+//           return <Dialogs addMessage={addMessage} altering_textarea={altering_textarea} Dialogs={Store.getState().Dialogs} /> 
+//         }
+//       }
+//    </Store_context.Consumer>
+//   );
+// }
+let mapStateToProps =(state)=>{
+  return{
+    Dialogs:state.Dialogs
+  }
 }
+let mapDispatchToProps =(dispatch)=>{
+  return{
+    addMessage:()=>{
+      let action =addMessageActionCreator() 
+      dispatch(action);
+    },
+    altering_textarea:(text)=>{
+      let action = changeNewMessageText(text) 
+      dispatch(action);
+    }
+  }
+}
+let Dialogs_container = connect(mapStateToProps,mapDispatchToProps)(Dialogs);
 export default Dialogs_container;
