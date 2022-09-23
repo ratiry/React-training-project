@@ -6,22 +6,27 @@ let initialization ={
     {message:'fgfgf',Likes :10, id:2},
     {message:'ggggg',Likes:0, id:3},
   ],
-  new_text:'hh',
+  new_text:'',
 }
 export const Wall_reducer=(State=initialization,action)=>{
   switch(action.type){
-    case ADD_POST:
+    case ADD_POST:{
       let post={
         message:State.new_text,
         Likes:0,
         id:4
       }
-      State.DataPosts.push(post);
-      State.new_text='';
-      return State;
-      case CHANGE_NEW_POST_TEXT:
-        State.new_text=action.value;
-        return State;
+      let CopyState={...State};
+      CopyState.DataPosts=[...State.DataPosts];
+      CopyState.DataPosts.push(post);
+      CopyState.new_text='';
+      return CopyState;
+    }
+      case CHANGE_NEW_POST_TEXT:{
+        let CopyState = {...State};
+        CopyState.new_text=action.value;
+        return CopyState;
+      }
       default :
         return State; 
   }

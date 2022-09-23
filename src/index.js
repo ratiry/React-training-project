@@ -3,25 +3,26 @@ import ReactDOM from 'react-dom/client';
 import './index.scss';
 import reportWebVitals from './reportWebVitals';
 // import State, { subscribe } from './redux/State.js';
-import Store from './redux/redux-strore.js';
+import store from './redux/redux-strore.js';
 import './index.scss';
 import App from './App';
 import { Provider } from 'react-redux';
-const root = ReactDOM.createRoot(document.getElementById('root'));
- let rerenderEntireTree=(State)=>{
-  root.render(
-    <React.StrictMode>
-      <Provider Store={Store}>
-          <App  />
-      </Provider>
-    </React.StrictMode>
-  );
-}
+import { createStore } from 'redux';
 
-rerenderEntireTree(Store.getState());  
-Store.subscribe(()=>{
-  let state= Store.getState();
-  rerenderEntireTree();
-})
+const root = ReactDOM.createRoot(document.getElementById('root'));
+
+
+root.render(
+  <React.StrictMode>      
+    <Provider store={store}>
+        <App  />
+    </Provider>
+  </React.StrictMode>
+);
+
+
+//  createStore(reducers).subscribe(()=>{
+//   rerenderEntireTree();
+// })
 
 reportWebVitals();

@@ -18,18 +18,23 @@ let initialization={
 }
 export const Dialogs_reducer=(State=initialization,action)=>{
  switch(action.type){
-    case ADD_MESSAGE:
+    case ADD_MESSAGE:{
       let newMessage={
         message:State.new_text_Dialogs,
         whose:'my',
         Name:'Name'
       }
-      State.dataMessages.push(newMessage);
-      State.new_text_Dialogs='';
-      return State;
-    case CHANGE_NEW_MESSAGE_TEXT:
-      State.new_text_Dialogs=action.value;
-      return State;
+      let StateCopy = {...State};
+      StateCopy.dataMessages=[...State.dataMessages];
+      StateCopy.dataMessages.push(newMessage);
+      StateCopy.new_text_Dialogs='';
+      return StateCopy;
+    }
+    case CHANGE_NEW_MESSAGE_TEXT:{
+      let StateCopy = {...State};
+      StateCopy.new_text_Dialogs=action.value;
+      return StateCopy;
+    }
     default:
      return State;
  }
