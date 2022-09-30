@@ -18,6 +18,7 @@ const isActive=({isActive}) => ({color: isActive ? 'gold' : 'white'});
 //   );
 // }
 let mapStateToProps=(state)=>{
+  
   return{
     SideBar:state.SideBar
   }

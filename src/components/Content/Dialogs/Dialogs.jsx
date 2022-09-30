@@ -11,7 +11,7 @@ const Dialogs =(props)=>{
     props.addMessage();
   }
   let altering_textarea=()=>{
-    props.altering_textarea(textarea.current.value);
+    props.alteringTextarea(textarea.current.value);
   }
   return(
     <div className={classes.Dialogs}>

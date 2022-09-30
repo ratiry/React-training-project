@@ -33,7 +33,7 @@ let mapDispatchToProps =(dispatch)=>{
       let action =addMessageActionCreator() 
       dispatch(action);
     },
-    altering_textarea:(text)=>{
+    alteringTextarea:(text)=>{
       let action = changeNewMessageText(text) 
       dispatch(action);
     }
