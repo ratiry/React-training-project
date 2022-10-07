@@ -16,7 +16,7 @@ let mapDispatchToprops = (dispatch)=>{
       let action = unfollowAC(id);
       dispatch(action);
     },
-    serUsers:(users)=>{
+    setUsers:(users)=>{
       let action = setUsersAC(users);
       dispatch(action)
     }
