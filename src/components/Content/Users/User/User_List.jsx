@@ -3,10 +3,14 @@ import user_anonymos from '../../../../images/User_anonymos.jpeg';
 import { render } from '@testing-library/react';
 
 let User_List = (props)=>{
+  let photoURL =  user_anonymos;
+  if(props.photoURL !=null){
+    photoURL = props.photoURL;
+  }
   return(
     <div className={classes.user}>
       <div className={classes.image_container}>
-        <img src={props.photoURL != null ? props.photoURL != null : user_anonymos} alt="" />
+        <img src={photoURL} alt="" />
         {props.followed ?
          <button className={classes.button_unfollow} onClick={()=>{props.unfollow(props.id)}}>unfollow</button>: 
          <button className={classes.button_follow} onClick={()=>{props.follow(props.id)}}>follow</button> 
