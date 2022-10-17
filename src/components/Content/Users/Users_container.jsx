@@ -1,13 +1,16 @@
 import { connect } from 'react-redux';
 import Users from './Users';
 
-import { followAC, unfollowAC, setUsersAC,SetCurrentPageAC ,SetTotalCountAC} from './../../../redux/Users-reducer';
+import { followAC, unfollowAC, setUsersAC,SetCurrentPageAC ,SetTotalCountAC,buttonBackwardAC,buttonForwardAC} from './../../../redux/Users-reducer';
 let mapStateToProps=(state)=>{
   return{
     Users:state.Users,
     PageSize:state.Users.PageSize,
     TotalUsersCount:state.Users.TotalUsersCount,
-    CurrentPage:state.Users.CurrentPage
+    CurrentPage:state.Users.CurrentPage,
+    BeforeCurrentPageArray:state.Users.BeforeCurrentPageArray,
+    AfterCurrentPageArray:state.Users.AfterCurrentPageArray,
+    LengthPageArray:state.Users.LengthPageArray,
   }
 }
 let mapDispatchToprops = (dispatch)=>{
@@ -32,7 +35,14 @@ let mapDispatchToprops = (dispatch)=>{
       let  action = SetTotalCountAC(TotalCount);
       dispatch(action);
     },
-    
+    buttonForward:()=>{
+      let action = buttonForwardAC();
+      dispatch(action)
+    },
+    buttonBackward:()=>{
+      let action = buttonBackwardAC();
+      dispatch(action);
+    }
   }
 }
 export  let Users_container = connect(mapStateToProps,mapDispatchToprops)(Users);

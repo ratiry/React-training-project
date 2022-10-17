@@ -5,13 +5,26 @@ const unfollow = 'unfollow';
 const ChangeCurrentPage='ChangeCurrentPage';
 const SetUsers = 'SetUsers';
 const TotalCount = 'TotalCount';
+const buttonBackward = 'buttonBackward';
+const buttonForward = 'buttonForward';
 let initialization = {
   Users_array:[],
   PageSize:5,
   TotalUsersCount:0,
-  CurrentPage:1
+  CurrentPage:1,
+  BeforeCurrentPageArray:[],
+  AfterCurrentPageArray:[]
 }
-
+export let buttonBackwardAC= ()=>{
+  return{
+    type:buttonBackward
+  }
+}
+export let buttonForwardAC= ()=>{
+  return{
+    type:buttonForward
+  }
+}
 export let followAC = (id)=>{
   return{
     type:follow,
@@ -73,6 +86,10 @@ export const Users_reducer=(State=initialization,action)=>{
           return{...State,CurrentPage:action.CurrentPage}
         case TotalCount:
           return{...State,TotalUsersCount:action.TotalCount_}
+        case buttonBackward:
+          return{...State,CurrentPage:State.CurrentPage-1}
+        case buttonForward:
+          return{...State,CurrentPage:State.CurrentPage+1}
       default :
         return State; 
   }
