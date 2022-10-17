@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import Users from './Users';
 
-import { followAC, unfollowAC, setUsersAC,SetCurrentPageAC ,SetTotalCountAC,buttonBackwardAC,buttonForwardAC} from './../../../redux/Users-reducer';
+import { followAC, unfollowAC, setUsersAC,SetCurrentPageAC ,SetTotalCountAC,buttonBackwardAC,buttonForwardAC,SetPagesAC} from './../../../redux/Users-reducer';
 let mapStateToProps=(state)=>{
   return{
     Users:state.Users,
@@ -41,6 +41,10 @@ let mapDispatchToprops = (dispatch)=>{
     },
     buttonBackward:()=>{
       let action = buttonBackwardAC();
+      dispatch(action);
+    },
+    SetPages:()=>{
+      let action = SetPagesAC();
       dispatch(action);
     }
   }

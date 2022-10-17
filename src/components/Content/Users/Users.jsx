@@ -5,23 +5,30 @@ import React from 'react';
 const api = axios.create({})
 class Users extends React.Component{
   componentDidMount(){
-    console.log(this.props.Users.Users_array);
-    
       axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.CurrentPage}&count=${this.props.PageSize}&limit=50`).then(data=> {
         this.props.setUsers(data.data.items);
-        console.log(data.data);
-        this.props.SetTotalCount(data.data.totalCount)
+        this.props.SetTotalCount(data.data.totalCount);
+        this.props.SetPages();
       })//multiplies copies without condition
   }
-
+  AfterPageArray=()=>{
+    let elements = this.props.AfterCurrentPageArray.map(p=>{return <span onClick={()=>{ this.OnPageChange(p)}} >{p}</span>})
+    return elements;
+  }
+  BeforePageArray=()=>{
+    let elements = this.props.BeforeCurrentPageArray.map(p=>{return <span onClick={()=>{ this.OnPageChange(p)}} >{p}</span>})
+    return elements;
+  }
   Users_elements =()=>{
     let elements= this.props.Users.Users_array.map((u) => <User_List key={u.id} name={u.name} followed={u.followed} description={u.status} location={u.location} photoURL={u.photos.small} follow={this.props.follow} unfollow={this.props.unfollow} id={u.id}/>);
     return elements;
   }
+
   OnPageChange=(p)=>{
     this.props.SetCurrentPage(p);
     axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${p}&count=${this.props.PageSize}`).then(data=> {
       this.props.setUsers(data.data.items);
+      this.props.SetPages();
       console.log(this.props.CurrentPage);
     })
   }
@@ -31,6 +38,7 @@ class Users extends React.Component{
         this.props.buttonBackward();
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.CurrentPage-1}&count=${this.props.PageSize}&limit=50`).then(data=> {
           this.props.setUsers(data.data.items);
+          this.props.SetPages();
           console.log(data.data);
           // this.props.SetTotalCount(data.data.totalCount)
         })
@@ -43,6 +51,7 @@ class Users extends React.Component{
         this.props.buttonForward(); 
         axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.CurrentPage+1}&count=${this.props.PageSize}&limit=50`).then(data=> {
           this.props.setUsers(data.data.items);
+          this.props.SetPages();
           console.log(data.data);
           // this.props.SetTotalCount(data.data.totalCount)
         })//multiplies copies without condition  
@@ -52,7 +61,6 @@ class Users extends React.Component{
   render(){
     let PagesCount = this.props.TotalUsersCount/this.props.PageSize;
     let Pages = [];
-    window.PagesCount = PagesCount;
     for(let i=0;i<PagesCount;i++){
       Pages.push(i+1);
     }
@@ -63,7 +71,10 @@ class Users extends React.Component{
       <button onClick={()=>{this.OnButtonPageChange('B')}}>backward</button>
       <button onClick={()=>{this.OnButtonPageChange('F')}}>forward</button>
       <div className={classes.pages_container}>
-        {PagesListElememts}
+        {/* {PagesListElememts} */}
+        {this.BeforePageArray()}
+        <span  className={classes.selected}>{this.props.CurrentPage}</span>
+        {this.AfterPageArray()}
       </div>
       <div className={classes.user_container}>
         

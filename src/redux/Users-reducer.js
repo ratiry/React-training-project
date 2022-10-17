@@ -7,13 +7,20 @@ const SetUsers = 'SetUsers';
 const TotalCount = 'TotalCount';
 const buttonBackward = 'buttonBackward';
 const buttonForward = 'buttonForward';
+const SetPages= 'SetPages';
 let initialization = {
   Users_array:[],
   PageSize:5,
   TotalUsersCount:0,
-  CurrentPage:1,
+  CurrentPage:4250,
   BeforeCurrentPageArray:[],
-  AfterCurrentPageArray:[]
+  AfterCurrentPageArray:[],
+  LengthPageArray:5
+}
+export let SetPagesAC=()=>{
+  return{
+    type:SetPages
+  }
 }
 export let buttonBackwardAC= ()=>{
   return{
@@ -90,6 +97,29 @@ export const Users_reducer=(State=initialization,action)=>{
           return{...State,CurrentPage:State.CurrentPage-1}
         case buttonForward:
           return{...State,CurrentPage:State.CurrentPage+1}
+        case SetPages:
+          let BeforeCurrentPageArray = [];
+          let AfterCurrentPageArray = [];
+          if(State.CurrentPage+State.LengthPageArray+1<=Math.ceil(State.TotalUsersCount/State.PageSize) ){
+            for(let i=State.CurrentPage+1;i<State.CurrentPage+State.LengthPageArray;i++){
+              AfterCurrentPageArray.push(i);
+            }
+          }else{
+            alert(Math.ceil(State.TotalUsersCount/State.PageSize)-State.CurrentPage);
+            for(let i=State.CurrentPage+1;i<=Math.ceil(State.TotalUsersCount/State.PageSize);i++){
+              AfterCurrentPageArray.push(i);
+            }
+          }
+          if(State.CurrentPage-State.LengthPageArray>0){
+            for(let i=State.CurrentPage-State.LengthPageArray+1;i<State.CurrentPage;i++){
+              BeforeCurrentPageArray.push(i);
+            }
+          }else{
+            for(let i=1;i<State.CurrentPage;i++){
+              BeforeCurrentPageArray.push(i);
+            }
+          }
+          return {...State,AfterCurrentPageArray:AfterCurrentPageArray,BeforeCurrentPageArray:BeforeCurrentPageArray};
       default :
         return State; 
   }
