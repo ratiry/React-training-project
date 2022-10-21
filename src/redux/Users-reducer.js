@@ -12,7 +12,7 @@ let initialization = {
   Users_array:[],
   PageSize:5,
   TotalUsersCount:0,
-  CurrentPage:4250,
+  CurrentPage:1,
   BeforeCurrentPageArray:[],
   AfterCurrentPageArray:[],
   LengthPageArray:5
@@ -105,7 +105,6 @@ export const Users_reducer=(State=initialization,action)=>{
               AfterCurrentPageArray.push(i);
             }
           }else{
-            alert(Math.ceil(State.TotalUsersCount/State.PageSize)-State.CurrentPage);
             for(let i=State.CurrentPage+1;i<=Math.ceil(State.TotalUsersCount/State.PageSize);i++){
               AfterCurrentPageArray.push(i);
             }
