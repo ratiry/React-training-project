@@ -77,46 +77,7 @@ let mapStateToProps=(state)=>{
     IsFetching:state.Users.IsFetching
   }
 }
-let mapDispatchToprops = (dispatch)=>{
-  return{
-    follow:(id)=>{
-      let action = followAC(id);
-      dispatch(action);
-    },
-    unfollow:(id)=>{
-      let action = unfollowAC(id);
-      dispatch(action);
-    },
-    setUsers:(users)=>{
-      let action = setUsersAC(users);
-      dispatch(action)
-    },
-    SetCurrentPage:(currentPage)=>{
-      let  action = SetCurrentPageAC(currentPage);
-      dispatch(action);
-    },
-    SetTotalCount:(TotalCount)=>{
-      let  action = SetTotalCountAC(TotalCount);
-      dispatch(action);
-    },
-    buttonForward:()=>{
-      let action = buttonForwardAC();
-      dispatch(action)
-    },
-    buttonBackward:()=>{
-      let action = buttonBackwardAC();
-      dispatch(action);
-    },
-    SetPages:()=>{
-      let action = SetPagesAC();
-      dispatch(action);
-    },
-    IsFetching_action:(IsFetching)=>{
-      let action= IsFetchingAC(IsFetching);
-      dispatch(action);
-    }
-  }
-}
+
 export  let Users_container = connect(mapStateToProps,{
   follow:followAC,
   unfollow:unfollowAC,
@@ -124,6 +85,7 @@ export  let Users_container = connect(mapStateToProps,{
   SetCurrentPage:SetCurrentPageAC,
   SetTotalCount:SetTotalCountAC,
   buttonForward:buttonForwardAC,
+  buttonBackward:buttonBackwardAC,
   SetPages:SetPagesAC,
   IsFetching_action:IsFetchingAC
 })(UsersAPI);

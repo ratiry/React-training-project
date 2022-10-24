@@ -1,13 +1,13 @@
 
 
-const follow = 'follow';
-const unfollow = 'unfollow';
-const ChangeCurrentPage='ChangeCurrentPage';
-const SetUsers = 'SetUsers';
+const FOLLOW = 'follow';
+const UNFOLLOW = 'unfollow';
+const CHANGE_CURRENT_PAGE='ChangeCurrentPage';
+const SET_USERS = 'SetUsers';
 const TotalCount = 'TotalCount';
-const buttonBackward = 'buttonBackward';
-const buttonForward = 'buttonForward';
-const SetPages= 'SetPages';
+const BUTTON_BACKWARD = 'buttonBackward';
+const BUTTON_FORWARD = 'buttonForward';
+const SET_PAGES= 'SetPages';
 const IsFetching_const='IsFetching';
 let initialization = {
   Users_array:[],
@@ -27,35 +27,35 @@ export let IsFetchingAC =(IsFetching)=>{
 }
 export let SetPagesAC=()=>{
   return{
-    type:SetPages
+    type:SET_PAGES
   }
 }
 export let buttonBackwardAC= ()=>{
   return{
-    type:buttonBackward
+    type:BUTTON_BACKWARD
   }
 }
 export let buttonForwardAC= ()=>{
   return{
-    type:buttonForward
+    type:BUTTON_FORWARD
   }
 }
 export let followAC = (id)=>{
   return{
-    type:follow,
+    type:FOLLOW,
     id:id
   }
 }
 
 export let unfollowAC = (id)=>{
   return{
-    type:unfollow,
+    type:UNFOLLOW,
     id:id
   }
 }
 export let setUsersAC = (Users_array)=>{
   return{
-    type:SetUsers,
+    type:SET_USERS,
     Users_array:Users_array
   }
 }
@@ -67,13 +67,13 @@ export let SetTotalCountAC = (TotalCount_)=>{
 }
 export let SetCurrentPageAC=(CurrentPage)=>{
   return{
-    type:ChangeCurrentPage,
+    type:CHANGE_CURRENT_PAGE,
     CurrentPage
   }
 }
 export const Users_reducer=(State=initialization,action)=>{
   switch(action.type){
-      case follow:
+      case FOLLOW:
         return {...State,
           Users_array:State.Users_array.map((u)=>{
             if(u.id===action.id){
@@ -84,7 +84,7 @@ export const Users_reducer=(State=initialization,action)=>{
           })    
         };
 
-      case unfollow:
+      case UNFOLLOW:
         
         return { ...State,
           Users_array:State.Users_array.map((u)=>{
@@ -95,17 +95,17 @@ export const Users_reducer=(State=initialization,action)=>{
             }
           })
         }
-      case SetUsers:
+      case SET_USERS:
         return{...State,Users_array:[ ...action.Users_array]}
-        case ChangeCurrentPage:
+        case CHANGE_CURRENT_PAGE:
           return{...State,CurrentPage:action.CurrentPage}
         case TotalCount:
           return{...State,TotalUsersCount:action.TotalCount_}
-        case buttonBackward:
+        case BUTTON_BACKWARD:
           return{...State,CurrentPage:State.CurrentPage-1}
-        case buttonForward:
+        case BUTTON_FORWARD:
           return{...State,CurrentPage:State.CurrentPage+1}
-        case SetPages:
+        case SET_PAGES:
           let BeforeCurrentPageArray = [];
           let AfterCurrentPageArray = [];
           if(State.CurrentPage+State.LengthPageArray+1<=Math.ceil(State.TotalUsersCount/State.PageSize) ){
