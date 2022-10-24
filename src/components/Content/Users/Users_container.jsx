@@ -6,11 +6,11 @@ import Users from './Users';
 class UsersAPI extends React.Component{
   componentDidMount(){
     this.props.IsFetching_action(true);
-    this.props.SetPages();
       axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.CurrentPage}&count=${this.props.PageSize}&limit=50`).then(data=> {
         this.props.IsFetching_action(false);
         this.props.setUsers(data.data.items);
         this.props.SetTotalCount(data.data.totalCount);
+        this.props.SetPages();
       })
   }
 
