@@ -1,6 +1,8 @@
 
 import classes from './Users.module.scss';
 import User_List from './User/User_List';
+import loading_gif from './../../../images/loading_gif.gif';
+import Preloader from '../../Preloader/Preloader';
 let Users = (props)=>{
   let PagesCount = props.TotalUsersCount/props.PageSize;
   let Pages = [];
@@ -13,6 +15,7 @@ let Users = (props)=>{
 
   return(
     <div className={classes.users}>
+
           <h4>Users</h4>
           <button onClick={()=>{props.OnButtonPageChange('B')}}>backward</button>
           <button onClick={()=>{props.OnButtonPageChange('F')}}>forward</button>
@@ -23,7 +26,7 @@ let Users = (props)=>{
             {Afterelements}
           </div>
           <div className={classes.user_container}>
-            {Userselements}
+            {props.IsFetching ? <Preloader/> : Userselements}
           </div>
     </div>
   )

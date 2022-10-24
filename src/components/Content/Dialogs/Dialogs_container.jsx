@@ -3,25 +3,7 @@ import { addMessageActionCreator,changeNewMessageText } from '../../../redux/Dia
 import Dialogs from './Dialogs';
 import { connect } from 'react-redux';
 
-// const Dialogs_container =(props)=>{
 
-//   return(
-//     <Store_context.Consumer>
-//       {
-//         (Store)=>{
-
-//           let addMessage =()=>{
-//             Store.dispatch(addMessageActionCreator());
-//           }
-//           let altering_textarea=(text)=>{
-//             Store.dispatch(changeNewMessageText(text));
-//           }
-//           return <Dialogs addMessage={addMessage} altering_textarea={altering_textarea} Dialogs={Store.getState().Dialogs} /> 
-//         }
-//       }
-//    </Store_context.Consumer>
-//   );
-// }
 let mapStateToProps =(state)=>{
   return{
     Dialogs:state.Dialogs

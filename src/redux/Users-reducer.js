@@ -8,6 +8,7 @@ const TotalCount = 'TotalCount';
 const buttonBackward = 'buttonBackward';
 const buttonForward = 'buttonForward';
 const SetPages= 'SetPages';
+const IsFetching_const='IsFetching';
 let initialization = {
   Users_array:[],
   PageSize:5,
@@ -15,7 +16,14 @@ let initialization = {
   CurrentPage:1,
   BeforeCurrentPageArray:[],
   AfterCurrentPageArray:[],
-  LengthPageArray:5
+  LengthPageArray:5,
+  IsFetching:false
+}
+export let IsFetchingAC =(IsFetching)=>{
+  return{
+    type:IsFetching_const,
+    IsFetching
+  }
 }
 export let SetPagesAC=()=>{
   return{
@@ -119,6 +127,8 @@ export const Users_reducer=(State=initialization,action)=>{
             }
           }
           return {...State,AfterCurrentPageArray:AfterCurrentPageArray,BeforeCurrentPageArray:BeforeCurrentPageArray};
+        case IsFetching_const:
+          return{...State,IsFetching:action.IsFetching}
       default :
         return State; 
   }
