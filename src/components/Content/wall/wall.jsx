@@ -6,6 +6,10 @@ let Wall = function(props){
   return(
     <div className={classes.Wall}>
       <h4>Wall</h4>
+      <img src={props.Wall.Wall_image} alt="" />
+      <div>
+        <span>{props.Wall.status}</span>
+      </div>
       <Textarea_wall 
       addPost_0={props.addPost_0}
       Textarea_altering={props.Textarea_altering}

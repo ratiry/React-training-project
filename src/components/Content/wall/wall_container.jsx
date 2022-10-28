@@ -4,7 +4,9 @@
 import Wall from './wall';
 import {addChangeNewPostTextActionCreator,addPostActionCreator } from './../../../redux/Wall-reducer';
 import { connect } from 'react-redux';
-
+import React from 'react';
+import  axios  from 'axios';
+import { SetUserProfile } from './../../../redux/Wall-reducer';
 
 let mapStateToProps = (state)=>{
   return{
@@ -20,8 +22,25 @@ let mapDispatchToProps = (dispatch)=>{
     Textarea_altering:(text)=>{
       let action = addChangeNewPostTextActionCreator(text) 
       dispatch(action);
+    },
+    SetUserProfile:(data)=>{
+      dispatch(SetUserProfile(data));
     }
   }
 }
-let Wall_container = connect(mapStateToProps,mapDispatchToProps)(Wall);
+class Wall_API extends React.Component{
+  componentDidMount(){
+    axios.get(`https://social-network.samuraijs.com/api/1.0/profile/3`).then(response=> {
+      console.log(response.data);
+      this.props.SetUserProfile(response.data);
+      debugger;
+    })
+  }
+  render(){
+    return(
+      <Wall Wall={this.props.Wall} addPost_0={this.props.addPost_0} Textarea_altering={this.props.Textarea_altering}/>
+    )
+  }
+}
+let Wall_container = connect(mapStateToProps,mapDispatchToProps)(Wall_API);
 export default Wall_container;

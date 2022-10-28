@@ -19,53 +19,53 @@ let initialization = {
   LengthPageArray:5,
   IsFetching:false
 }
-export let IsFetchingAC =(IsFetching)=>{
+export let IsFetching_action =(IsFetching)=>{
   return{
     type:IsFetching_const,
     IsFetching
   }
 }
-export let SetPagesAC=()=>{
+export let SetPages=()=>{
   return{
     type:SET_PAGES
   }
 }
-export let buttonBackwardAC= ()=>{
+export let buttonBackward= ()=>{
   return{
     type:BUTTON_BACKWARD
   }
 }
-export let buttonForwardAC= ()=>{
+export let buttonForward= ()=>{
   return{
     type:BUTTON_FORWARD
   }
 }
-export let followAC = (id)=>{
+export let follow = (id)=>{
   return{
     type:FOLLOW,
     id:id
   }
 }
 
-export let unfollowAC = (id)=>{
+export let unfollow = (id)=>{
   return{
     type:UNFOLLOW,
     id:id
   }
 }
-export let setUsersAC = (Users_array)=>{
+export let setUsers = (Users_array)=>{
   return{
     type:SET_USERS,
     Users_array:Users_array
   }
 }
-export let SetTotalCountAC = (TotalCount_)=>{
+export let SetTotalCount = (TotalCount_)=>{
   return{
     type:TotalCount,
     TotalCount_
   }
 }
-export let SetCurrentPageAC=(CurrentPage)=>{
+export let SetCurrentPage=(CurrentPage)=>{
   return{
     type:CHANGE_CURRENT_PAGE,
     CurrentPage

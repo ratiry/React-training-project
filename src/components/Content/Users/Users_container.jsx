@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { followAC, unfollowAC, setUsersAC, SetCurrentPageAC, SetTotalCountAC, buttonBackwardAC, buttonForwardAC, SetPagesAC, IsFetchingAC } from './../../../redux/Users-reducer';
+import { follow, unfollow, setUsers, SetCurrentPage, SetTotalCount, buttonBackward, buttonForward, SetPages, IsFetching_action } from './../../../redux/Users-reducer';
 import axios from 'axios';
 import React from 'react';
 import Users from './Users';
@@ -77,15 +77,8 @@ let mapStateToProps=(state)=>{
     IsFetching:state.Users.IsFetching
   }
 }
-
-export  let Users_container = connect(mapStateToProps,{
-  follow:followAC,
-  unfollow:unfollowAC,
-  setUsers:setUsersAC,
-  SetCurrentPage:SetCurrentPageAC,
-  SetTotalCount:SetTotalCountAC,
-  buttonForward:buttonForwardAC,
-  buttonBackward:buttonBackwardAC,
-  SetPages:SetPagesAC,
-  IsFetching_action:IsFetchingAC
-})(UsersAPI);
+let mapDispatchToProps={
+  follow,unfollow,setUsers,SetCurrentPage,SetTotalCount,
+  buttonForward,buttonBackward,SetPages,IsFetching_action,
+}
+export  let Users_container = connect(mapStateToProps,mapDispatchToProps)(UsersAPI);
