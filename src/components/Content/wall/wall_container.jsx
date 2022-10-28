@@ -30,10 +30,10 @@ let mapDispatchToProps = (dispatch)=>{
 }
 class Wall_API extends React.Component{
   componentDidMount(){
-    axios.get(`https://social-network.samuraijs.com/api/1.0/profile/3`).then(response=> {
+    axios.get(`https://social-network.samuraijs.com/api/1.0/profile/8`).then(response=> {
       console.log(response.data);
-      this.props.SetUserProfile(response.data);
       debugger;
+      this.props.SetUserProfile(response.data);
     })
   }
   render(){
