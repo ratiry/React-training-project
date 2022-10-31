@@ -21,7 +21,6 @@ let Wall = function(props){
         contacts.push(array);
       }
      }
-     console.log(contacts);
      elements_contacts = contacts.map(c=>{ return <Profile_inf_item name={c[0]} value={c[1]}/>})
      debugger;
     return(
@@ -35,15 +34,9 @@ let Wall = function(props){
         </div>
         </div>
         <div className={classes.profile_inf_container}>
-          <div className={classes.profile_inf}>
-            <span>full Name:</span>
-            <span>{props.Wall.profile.fullName}</span>
-          </div>
-          <div className={classes.profile_inf}>
-            <span>Am I looking for job?</span>
-            {props.Wall.profile.lookingForAJob?<span>YES</span>:<span>NOPE</span>}
-          </div>
-          {props.Wall.profile.lookingForAJobDescription ? <div className={classes.profile_inf}> <span>description of job:</span><span>{props.Wall.profile.lookingForAJobDescription}</span></div>:null}
+          <Profile_inf_item name='full Name:' value={props.Wall.profile.fullName}/>
+          {props.Wall.profile.lookingForAJob?<Profile_inf_item name='Am I looking for job?' value='YES'/> : <Profile_inf_item name='Am I looking for job?' value='NOPE'/>}
+          {props.Wall.profile.lookingForAJobDescription ?<Profile_inf_item name='descroption of job' value={props.Wall.profile.lookingForAJobDescription}/> :null}
           <h5>Contacts</h5>
           {elements_contacts}
         </div>
