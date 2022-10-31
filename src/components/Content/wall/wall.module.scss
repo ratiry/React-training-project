@@ -13,4 +13,15 @@
     width: 100%;
     height: 330px;
   }
+  .profile_inf_container{
+    display:flex;
+    width:20%;
+    flex-direction:column;
+    margin:0 auto;
+    .profile_inf{
+      display:flex;
+      justify-content:space-between;
+      margin-bottom:10px;
+    }
+  }
 }

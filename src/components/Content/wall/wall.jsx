@@ -5,10 +5,22 @@ import Preloader from '../../Preloader/Preloader.jsx';
 import User_anonymos from './../../../images/User_anonymos.jpeg';
 let Wall = function(props){
   let Posts_Elements = props.Wall.DataPosts.map((p) => <Post message={p.message} name={p.name} Likes={p.Likes}/>)
+  let contacts=[];
   if(!props.Wall.profile){
     return <Preloader/>
   }else{
-    console.log(props);
+     for(let i=0;i<Object.keys(props.Wall.profile.contacts).length;i++){
+      let array=[];
+      let contact = Object.keys(props.Wall.profile.contacts)[i];
+      let link_of_contact = Object.values(props.Wall.profile.contacts)[i];
+      if(link_of_contact){
+        array.push(contact);
+        array.push(link_of_contact);
+        contacts.push(array);
+      }
+      console.log(contacts);
+      
+     }
     return(
       <div className={classes.Wall}>
         <h4>Wall</h4>
@@ -18,6 +30,18 @@ let Wall = function(props){
         <div>
           <span>{props.Wall.profile.aboutMe}</span>
         </div>
+        </div>
+        <div className={classes.profile_inf_container}>
+          <div className={classes.profile_inf}>
+            <span>full Name:</span>
+            <span>{props.Wall.profile.fullName}</span>
+          </div>
+          <div className={classes.profile_inf}>
+            <span>Am I looking for job?</span>
+            {props.Wall.profile.lookingForAJob?<span>YES</span>:<span>NOPE</span>}
+          </div>
+          {props.Wall.profile.lookingForAJobDescription ? <div className={classes.profile_inf}> <span>description of job:</span><span>{props.Wall.profile.lookingForAJobDescription}</span></div>:null}
+          <h5>Contacts</h5>
         </div>
         <Textarea_wall 
         addPost_0={props.addPost_0}

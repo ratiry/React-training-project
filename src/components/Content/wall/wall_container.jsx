@@ -7,7 +7,27 @@ import { connect } from 'react-redux';
 import React from 'react';
 import  axios  from 'axios';
 import { SetUserProfile } from './../../../redux/Wall-reducer';
+import {
+  useLocation,
+  useNavigate,
+  useParams
+} from "react-router-dom";
 
+function withRouter(Component) {
+  function ComponentWithRouterProp(props) {
+    let location = useLocation();
+    let navigate = useNavigate();
+    let params = useParams();
+    return (
+      <Component
+        {...props}
+        router={{ location, navigate, params }}
+      />
+    );
+  }
+
+  return ComponentWithRouterProp;
+}
 let mapStateToProps = (state)=>{
   return{
     Wall:state.Wall
@@ -30,7 +50,11 @@ let mapDispatchToProps = (dispatch)=>{
 }
 class Wall_API extends React.Component{
   componentDidMount(){
-    axios.get(`https://social-network.samuraijs.com/api/1.0/profile/8`).then(response=> {
+    let userId = this.props.router.params.userId;
+    if(!userId){
+      userId=2;
+    }
+    axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`).then(response=> {
       console.log(response.data);
       debugger;
       this.props.SetUserProfile(response.data);
@@ -42,5 +66,6 @@ class Wall_API extends React.Component{
     )
   }
 }
-let Wall_container = connect(mapStateToProps,mapDispatchToProps)(Wall_API);
+let Wall_with_Url_data = withRouter(Wall_API);
+let Wall_container = connect(mapStateToProps,mapDispatchToProps)(Wall_with_Url_data);
 export default Wall_container;

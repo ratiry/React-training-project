@@ -16,7 +16,10 @@ function App(props) {
         <SideBar_container/>
         <div className ='content'>
           <Routes>
-            <Route path="/Wall*" element={<Wall_container  />}/>
+            <Route path='/Wall'>
+              <Route path="/Wall/:userId*" element={<Wall_container  />}/>
+              <Route path="/Wall" element={<Wall_container  />}/>
+            </Route>
             <Route path="/Dialogs*" element={<Dialogs_container/>}/>
             <Route path ='/Messages*' element={<Messages/>}/>
             <Route path ='/Users*' element={<Users_container/>}/>
