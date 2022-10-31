@@ -3,9 +3,11 @@ import Post from './post/Post';
 import classes from './wall.module.scss';
 import Preloader from '../../Preloader/Preloader.jsx';
 import User_anonymos from './../../../images/User_anonymos.jpeg';
+import Profile_inf_item from './profile_inf_item';
 let Wall = function(props){
   let Posts_Elements = props.Wall.DataPosts.map((p) => <Post message={p.message} name={p.name} Likes={p.Likes}/>)
   let contacts=[];
+  let elements_contacts = [];
   if(!props.Wall.profile){
     return <Preloader/>
   }else{
@@ -18,9 +20,10 @@ let Wall = function(props){
         array.push(link_of_contact);
         contacts.push(array);
       }
-      console.log(contacts);
-      
      }
+     console.log(contacts);
+     elements_contacts = contacts.map(c=>{ return <Profile_inf_item name={c[0]} value={c[1]}/>})
+     debugger;
     return(
       <div className={classes.Wall}>
         <h4>Wall</h4>
@@ -42,6 +45,7 @@ let Wall = function(props){
           </div>
           {props.Wall.profile.lookingForAJobDescription ? <div className={classes.profile_inf}> <span>description of job:</span><span>{props.Wall.profile.lookingForAJobDescription}</span></div>:null}
           <h5>Contacts</h5>
+          {elements_contacts}
         </div>
         <Textarea_wall 
         addPost_0={props.addPost_0}
