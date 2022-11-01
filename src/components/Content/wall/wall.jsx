@@ -11,6 +11,7 @@ let Wall = function(props){
   if(!props.Wall.profile){
     return <Preloader/>
   }else{
+    let count_of_underfined_contacts = 0;
      for(let i=0;i<Object.keys(props.Wall.profile.contacts).length;i++){
       let array=[];
       let contact = Object.keys(props.Wall.profile.contacts)[i];
@@ -19,10 +20,15 @@ let Wall = function(props){
         array.push(contact);
         array.push(link_of_contact);
         contacts.push(array);
+      }else{
+        count_of_underfined_contacts++;
       }
      }
-     elements_contacts = contacts.map(c=>{ return <Profile_inf_item name={c[0]} value={c[1]}/>})
-     debugger;
+     if(count_of_underfined_contacts !==Object.keys(props.Wall.profile.contacts).length){
+      elements_contacts = contacts.map(c=>{ return <Profile_inf_item name={c[0]} value={c[1]}/>})
+     }else{
+        elements_contacts.push(props.Wall.allContactsAreUnderfined);
+     }
     return(
       <div className={classes.Wall}>
         <h4>Wall</h4>

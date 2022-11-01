@@ -13,11 +13,11 @@ let initialization = {
   Users_array:[],
   PageSize:5,
   TotalUsersCount:0,
-  CurrentPage:1,
+  CurrentPage:4250,
   BeforeCurrentPageArray:[],
   AfterCurrentPageArray:[],
   LengthPageArray:5,
-  IsFetching:false
+  IsFetching:false,
 }
 export let IsFetching_action =(IsFetching)=>{
   return{
