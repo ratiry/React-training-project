@@ -6,11 +6,13 @@ import {subscribe} from 'redux';
 import { Dialogs_reducer } from './Dialogs-reducer';
 import { SideBar_reducer } from './SideBar_reducer';
 import { Users_reducer } from './Users-reducer';
+import { auth_reducer } from './auth_reducer';
 let reducers=combineReducers({
   Wall:Wall_reducer,
   Dialogs:Dialogs_reducer,
   SideBar:SideBar_reducer,
-  Users:Users_reducer
+  Users:Users_reducer,
+  auth:auth_reducer
 })
 let store = createStore(reducers);
 window.store= store;
