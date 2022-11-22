@@ -9,6 +9,7 @@ const BUTTON_BACKWARD = 'buttonBackward';
 const BUTTON_FORWARD = 'buttonForward';
 const SET_PAGES= 'SetPages';
 const IsFetching_const='IsFetching';
+const FOLLOWING_IS_IN_PROGRESS = 'FOLLOWING_IS_IN_PROGRESS';
 let initialization = {
   Users_array:[],
   PageSize:5,
@@ -18,6 +19,13 @@ let initialization = {
   AfterCurrentPageArray:[],
   LengthPageArray:5,
   IsFetching:false,
+  follwingInProgress:false
+}
+export let follwingInProgress=(follwingInProgress)=>{
+  return{
+    type:FOLLOWING_IS_IN_PROGRESS,
+    follwingInProgress
+  }
 }
 export let IsFetching_action =(IsFetching)=>{
   return{
@@ -129,6 +137,8 @@ export const Users_reducer=(State=initialization,action)=>{
           return {...State,AfterCurrentPageArray:AfterCurrentPageArray,BeforeCurrentPageArray:BeforeCurrentPageArray};
         case IsFetching_const:
           return{...State,IsFetching:action.IsFetching}
+        case FOLLOWING_IS_IN_PROGRESS:
+          return{...State,follwingInProgress:action.follwingInProgress}
       default :
         return State; 
   }
