@@ -4,6 +4,7 @@ import classes from './SideBar.module.scss';
 import Friends from './Friends/Friends';
 import SideBar from './SideBar';
 import { connect } from 'react-redux';
+import { Delete_Friend } from '../../redux/SideBar_reducer';
 const isActive=({isActive}) => ({color: isActive ? 'gold' : 'white'});
 // const SideBar_container = function(){
 //   return(
@@ -23,10 +24,8 @@ let mapStateToProps=(state)=>{
     SideBar:state.SideBar
   }
 }
-let mapDispatchToProps=(dispatch)=>{
-  return{
-
-  }
+let mapDispatchToProps={
+  Delete_Friend
 }
-let SideBar_container = connect(mapStateToProps,null)(SideBar);
+let SideBar_container = connect(mapStateToProps,mapDispatchToProps)(SideBar);
 export default SideBar_container;

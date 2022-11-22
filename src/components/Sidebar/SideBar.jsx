@@ -10,7 +10,7 @@ const SideBar = function(props){
   return(
     <div className = {classes.sidebar}>
       {Links_elememts}
-      <Friends Friends={props.SideBar.Friends}/>
+      <Friends Friends={props.SideBar.Friends} Delete_Friend={props.Delete_Friend}/>
   </div>
   );
 }

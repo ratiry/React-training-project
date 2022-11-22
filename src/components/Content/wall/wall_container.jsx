@@ -56,7 +56,7 @@ class Wall_API extends React.Component{
     }
     axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`).then(response=> {
       console.log(response.data);
-      debugger;
+      ;
       this.props.SetUserProfile(response.data);
     })
   }
