@@ -3,11 +3,11 @@ import { follow, unfollow, setUsers, SetCurrentPage, SetTotalCount, buttonBackwa
 import axios from 'axios';
 import React from 'react';
 import Users from './Users';
-import { GetUsers } from '../../../API/API';
+import { USERS_API } from '../../../API/API';
 class UsersAPI extends React.Component{
   componentDidMount(){
     this.props.IsFetching_action(true);
-      GetUsers(this.props.CurrentPage,this.props.PageSize).then(data=> {
+    USERS_API.GetUsers(this.props.CurrentPage,this.props.PageSize).then(data=> {
         this.props.IsFetching_action(false);
         this.props.setUsers(data.items);
         this.props.SetTotalCount(data.totalCount);
@@ -20,7 +20,7 @@ class UsersAPI extends React.Component{
     this.props.SetCurrentPage(p);
     this.props.IsFetching_action(true);
     this.props.SetPages();
-    GetUsers(this.props.CurrentPage,this.props.PageSize).then(data=> {
+    USERS_API.GetUsers(this.props.CurrentPage,this.props.PageSize).then(data=> {
       this.props.setUsers(data.items);
       this.props.IsFetching_action(false);
     })
@@ -31,7 +31,7 @@ class UsersAPI extends React.Component{
         this.props.buttonBackward();
         this.props.IsFetching_action(true);
         this.props.SetPages();
-         GetUsers(this.props.CurrentPage-1,this.props.PageSize).then(data=> {
+        USERS_API.GetUsers(this.props.CurrentPage-1,this.props.PageSize).then(data=> {
           this.props.setUsers(data.items);
           this.props.IsFetching_action(false);
           // this.props.SetTotalCount(data.data.totalCount)
@@ -43,7 +43,7 @@ class UsersAPI extends React.Component{
       }else{
         this.props.buttonForward(); 
         this.props.IsFetching_action(true);
-        GetUsers(this.props.CurrentPage+1,this.props.PageSize).then(data=> {
+        USERS_API.GetUsers(this.props.CurrentPage+1,this.props.PageSize).then(data=> {
           this.props.setUsers(data.items);
           this.props.IsFetching_action(false);
           this.props.SetPages();

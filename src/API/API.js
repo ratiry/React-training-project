@@ -1,8 +1,17 @@
 import axios from "axios";
-
-export let GetUsers = (CurrentPage=4000,PageSize=5)=>{
-  return axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${CurrentPage}&count=${PageSize}&limit=50`,
-  {
-    withCredentials:true
-  }).then(response=> response.data)
+let instance = axios.create({
+  withCredentials:true,
+  baseURL:'https://social-network.samuraijs.com/api/1.0/',
+  headers:{'API-KEY':'339cb088-fb45-4a92-a140-17568b7eb47d'}
+})
+export let USERS_API= {
+  GetUsers  (CurrentPage=4000,PageSize=5){
+    return instance.get(`users?page=${CurrentPage}&count=${PageSize}&limit=50`,).then(response=> response.data)
+  },
+  delete_follow(id){
+    return instance.delete(`follow/${id}`)
+  },
+  post_follow(id){
+    return instance.post(`follow/${id}`)
+  }
 }
