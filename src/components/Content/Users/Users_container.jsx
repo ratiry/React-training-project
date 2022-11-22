@@ -6,7 +6,7 @@ import Users from './Users';
 class UsersAPI extends React.Component{
   componentDidMount(){
     this.props.IsFetching_action(true);
-      axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.CurrentPage}&count=${this.props.PageSize}&limit=50`).then(data=> {
+      axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.CurrentPage}&count=${this.props.PageSize}&limit=50`,{withCredentials:true}).then(data=> {
         this.props.IsFetching_action(false);
         this.props.setUsers(data.data.items);
         this.props.SetTotalCount(data.data.totalCount);
@@ -19,7 +19,7 @@ class UsersAPI extends React.Component{
     this.props.SetCurrentPage(p);
     this.props.IsFetching_action(true);
     this.props.SetPages();
-    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${p}&count=${this.props.PageSize}`).then(data=> {
+    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${p}&count=${this.props.PageSize}`,{withCredentials:true}).then(data=> {
       this.props.setUsers(data.data.items);
       this.props.IsFetching_action(false);
     })
@@ -30,7 +30,7 @@ class UsersAPI extends React.Component{
         this.props.buttonBackward();
         this.props.IsFetching_action(true);
         this.props.SetPages();
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.CurrentPage-1}&count=${this.props.PageSize}&limit=50`).then(data=> {
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.CurrentPage-1}&count=${this.props.PageSize}&limit=50`,{withCredentials:true}).then(data=> {
           this.props.setUsers(data.data.items);
           this.props.IsFetching_action(false);
           // this.props.SetTotalCount(data.data.totalCount)
@@ -42,7 +42,7 @@ class UsersAPI extends React.Component{
       }else{
         this.props.buttonForward(); 
         this.props.IsFetching_action(true);
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.CurrentPage+1}&count=${this.props.PageSize}&limit=50`).then(data=> {
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.CurrentPage+1}&count=${this.props.PageSize}&limit=50`,{withCredentials:true}).then(data=> {
           this.props.setUsers(data.data.items);
           this.props.IsFetching_action(false);
           this.props.SetPages();
@@ -51,7 +51,7 @@ class UsersAPI extends React.Component{
     }
   }
   render(){
-    return <Users TotalUsersCount={this.props.TotalUsersCount}
+      return <Users TotalUsersCount={this.props.TotalUsersCount}
     PageSize={this.props.PageSize}
     BeforeCurrentPageArray={this.props.BeforeCurrentPageArray}
     OnPageChange={this.OnPageChange}
