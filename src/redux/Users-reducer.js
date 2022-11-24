@@ -19,12 +19,12 @@ let initialization = {
   AfterCurrentPageArray:[],
   LengthPageArray:5,
   IsFetching:false,
-  follwingInProgress:false
+  IsfollowingInProgress:false
 }
-export let follwingInProgress=(follwingInProgress)=>{
+export let followingInProgress=(IsfollowingInProgress)=>{
   return{
     type:FOLLOWING_IS_IN_PROGRESS,
-    follwingInProgress
+    IsfollowingInProgress
   }
 }
 export let IsFetching_action =(IsFetching)=>{
@@ -138,7 +138,7 @@ export const Users_reducer=(State=initialization,action)=>{
         case IsFetching_const:
           return{...State,IsFetching:action.IsFetching}
         case FOLLOWING_IS_IN_PROGRESS:
-          return{...State,follwingInProgress:action.follwingInProgress}
+          return{...State,IsfollowingInProgress:action.IsfollowingInProgress}
       default :
         return State; 
   }

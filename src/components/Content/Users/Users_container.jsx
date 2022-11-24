@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { follow, unfollow, setUsers, SetCurrentPage, SetTotalCount, buttonBackward, buttonForward, SetPages, IsFetching_action } from './../../../redux/Users-reducer';
+import { follow, unfollow, setUsers, SetCurrentPage, SetTotalCount, buttonBackward, buttonForward, SetPages, IsFetching_action, followingInProgress } from './../../../redux/Users-reducer';
 import axios from 'axios';
 import React from 'react';
 import Users from './Users';
@@ -63,6 +63,8 @@ class UsersAPI extends React.Component{
     follow={this.props.follow}
     unfollow={this.props.unfollow}
     IsFetching={this.props.IsFetching}
+    IsfollowingInProgress={this.props.IsfollowingInProgress}
+    followingInProgress={this.props.followingInProgress}
     />;
   }
 }
@@ -75,11 +77,12 @@ let mapStateToProps=(state)=>{
     BeforeCurrentPageArray:state.Users.BeforeCurrentPageArray,
     AfterCurrentPageArray:state.Users.AfterCurrentPageArray,
     LengthPageArray:state.Users.LengthPageArray,
-    IsFetching:state.Users.IsFetching
+    IsFetching:state.Users.IsFetching,
+    IsfollowingInProgress:state.Users.IsfollowingInProgress
   }
 }
 let mapDispatchToProps={
   follow,unfollow,setUsers,SetCurrentPage,SetTotalCount,
-  buttonForward,buttonBackward,SetPages,IsFetching_action,
+  buttonForward,buttonBackward,SetPages,IsFetching_action,followingInProgress
 }
 export  let Users_container = connect(mapStateToProps,mapDispatchToProps)(UsersAPI);

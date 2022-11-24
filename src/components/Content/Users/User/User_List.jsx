@@ -17,14 +17,18 @@ let User_List = (props)=>{
           <img src={photoURL} alt="" />
         </NavLink>
         {props.followed ?
-         <button className={classes.button_unfollow} onClick={()=>{
+         <button disabled={props.IsfollowingInProgress} className={classes.button_unfollow} onClick={()=>{
+          props.followingInProgress(true);
           USERS_API.delete_follow(props.id).then(response=> {
             if(response.data.resultCode ===0){
               props.unfollow(props.id)
             }
+            props.followingInProgress(false);
           })}}>unfollow</button>: 
-         <button className={classes.button_follow} onClick={()=>{
+         <button disabled={props.IsfollowingInProgress} className={classes.button_follow} onClick={()=>{
+          props.followingInProgress(true);
           USERS_API.post_follow(props.id).then(response=> {
+            props.followingInProgress(false);
             if(response.data.resultCode ===0){
               props.follow(props.id)
             }
