@@ -20,8 +20,9 @@ class UsersAPI extends React.Component{
     this.props.SetCurrentPage(p);
     this.props.IsFetching_action(true);
     this.props.SetPages();
-    USERS_API.GetUsers(this.props.CurrentPage,this.props.PageSize).then(data=> {
+    USERS_API.GetUsers(p,this.props.PageSize).then(data=> {
       this.props.setUsers(data.items);
+      ;
       this.props.IsFetching_action(false);
     })
   }

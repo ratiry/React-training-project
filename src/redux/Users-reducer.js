@@ -14,7 +14,7 @@ let initialization = {
   Users_array:[],
   PageSize:5,
   TotalUsersCount:0,
-  CurrentPage:4250,
+  CurrentPage:1,
   BeforeCurrentPageArray:[],
   AfterCurrentPageArray:[],
   LengthPageArray:5,
@@ -106,6 +106,7 @@ export const Users_reducer=(State=initialization,action)=>{
       case SET_USERS:
         return{...State,Users_array:[ ...action.Users_array]}
         case CHANGE_CURRENT_PAGE:
+          debugger;
           return{...State,CurrentPage:action.CurrentPage}
         case TotalCount:
           return{...State,TotalUsersCount:action.TotalCount_}
