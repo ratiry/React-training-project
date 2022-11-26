@@ -29,6 +29,7 @@
         button{
           &:disabled{
             cursor:not-allowed;
+            background:grey !important;
           }
           &.button_follow{
             color:yellow;

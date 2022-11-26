@@ -17,18 +17,18 @@ let User_List = (props)=>{
           <img src={photoURL} alt="" />
         </NavLink>
         {props.followed ?
-         <button disabled={props.IsfollowingInProgress} className={classes.button_unfollow} onClick={()=>{
-          props.followingInProgress(true);
+         <button disabled={props.IsfollowingInProgress.some((id)=>id==props.id)} className={classes.button_unfollow} onClick={()=>{
+          props.followingInProgress(true,props.id);
           USERS_API.delete_follow(props.id).then(response=> {
             if(response.data.resultCode ===0){
               props.unfollow(props.id)
             }
-            props.followingInProgress(false);
+            props.followingInProgress(false,props.id);
           })}}>unfollow</button>: 
-         <button disabled={props.IsfollowingInProgress} className={classes.button_follow} onClick={()=>{
-          props.followingInProgress(true);
+         <button disabled={props.IsfollowingInProgress.some((id)=>id==props.id)} className={classes.button_follow} onClick={()=>{
+          props.followingInProgress(true,props.id);
           USERS_API.post_follow(props.id).then(response=> {
-            props.followingInProgress(false);
+            props.followingInProgress(false,props.id);
             if(response.data.resultCode ===0){
               props.follow(props.id)
             }

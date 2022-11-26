@@ -6,7 +6,7 @@ let instance = axios.create({
 })
 export let USERS_API= {
   GetUsers  (CurrentPage=4000,PageSize=5){
-    debugger;
+    ;
     let items = instance.get(`users?page=${CurrentPage}&count=${PageSize}&limit=50`,).then(response=> response.data);
     return items;
   },

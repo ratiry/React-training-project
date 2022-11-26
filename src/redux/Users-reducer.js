@@ -14,17 +14,18 @@ let initialization = {
   Users_array:[],
   PageSize:5,
   TotalUsersCount:0,
-  CurrentPage:1,
+  CurrentPage:4290,
   BeforeCurrentPageArray:[],
   AfterCurrentPageArray:[],
-  LengthPageArray:5,
+  LengthPageArray:15,
   IsFetching:false,
-  IsfollowingInProgress:false
+  IsfollowingInProgress:[]
 }
-export let followingInProgress=(IsfollowingInProgress)=>{
+export let followingInProgress=(IsfollowingInProgress,id)=>{
   return{
     type:FOLLOWING_IS_IN_PROGRESS,
-    IsfollowingInProgress
+    IsfollowingInProgress,
+    id
   }
 }
 export let IsFetching_action =(IsFetching)=>{
@@ -106,7 +107,6 @@ export const Users_reducer=(State=initialization,action)=>{
       case SET_USERS:
         return{...State,Users_array:[ ...action.Users_array]}
         case CHANGE_CURRENT_PAGE:
-          debugger;
           return{...State,CurrentPage:action.CurrentPage}
         case TotalCount:
           return{...State,TotalUsersCount:action.TotalCount_}
@@ -139,7 +139,13 @@ export const Users_reducer=(State=initialization,action)=>{
         case IsFetching_const:
           return{...State,IsFetching:action.IsFetching}
         case FOLLOWING_IS_IN_PROGRESS:
-          return{...State,IsfollowingInProgress:action.IsfollowingInProgress}
+          
+          return{
+            ...State,
+            IsfollowingInProgress:action.IsfollowingInProgress ?
+              [...State.IsfollowingInProgress, action.id]:
+              State.IsfollowingInProgress.filter((id)=>id!==action.id)
+          }
       default :
         return State; 
   }
