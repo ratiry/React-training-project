@@ -1,54 +1,28 @@
 import { connect } from 'react-redux';
-import { follow, unfollow, setUsers, SetCurrentPage, SetTotalCount, buttonBackward, buttonForward, SetPages, IsFetching_action, followingInProgress } from './../../../redux/Users-reducer';
+import { follow, unfollow,  buttonBackward, buttonForward,  followingInProgress, GetUsersThunkCreator,followThunkCreator,UnfollowThunkCreator } from './../../../redux/Users-reducer';
 import axios from 'axios';
 import React from 'react';
 import Users from './Users';
 import { USERS_API } from '../../../API/API';
 class UsersAPI extends React.Component{
   componentDidMount(){
-    this.props.IsFetching_action(true);
-    USERS_API.GetUsers(this.props.CurrentPage,this.props.PageSize).then(data=> {
-        this.props.IsFetching_action(false);
-        this.props.setUsers(data.items);
-        this.props.SetTotalCount(data.totalCount);
-        this.props.SetPages();
-      })
+    this.props.GetUsersThunkCreator(this.props.CurrentPage,this.props.PageSize);
   }
-
-
   OnPageChange=(p)=>{
-    this.props.SetCurrentPage(p);
-    this.props.IsFetching_action(true);
-    this.props.SetPages();
-    USERS_API.GetUsers(p,this.props.PageSize).then(data=> {
-      this.props.setUsers(data.items);
-      ;
-      this.props.IsFetching_action(false);
-    })
+    this.props.GetUsersThunkCreator(p,this.props.PageSize);
   }
   OnButtonPageChange=(type)=>{
-    if(type=='B'){
+    if(type==='B'){
       if(this.props.CurrentPage -1!==0){
         this.props.buttonBackward();
-        this.props.IsFetching_action(true);
-        this.props.SetPages();
-        USERS_API.GetUsers(this.props.CurrentPage-1,this.props.PageSize).then(data=> {
-          this.props.setUsers(data.items);
-          this.props.IsFetching_action(false);
-          // this.props.SetTotalCount(data.data.totalCount)
-        })
+        this.props.GetUsersThunkCreator(this.props.CurrentPage-1,this.props.PageSize);
       }   
     }else if(type ==='F'){
       if(Math.ceil(this.props.TotalUsersCount/this.props.PageSize) < this.props.CurrentPage+1){
     
       }else{
         this.props.buttonForward(); 
-        this.props.IsFetching_action(true);
-        USERS_API.GetUsers(this.props.CurrentPage+1,this.props.PageSize).then(data=> {
-          this.props.setUsers(data.items);
-          this.props.IsFetching_action(false);
-          this.props.SetPages();
-        }) 
+        this.props.GetUsersThunkCreator(this.props.CurrentPage+1,this.props.PageSize);
       }
     }
   }
@@ -66,6 +40,8 @@ class UsersAPI extends React.Component{
     IsFetching={this.props.IsFetching}
     IsfollowingInProgress={this.props.IsfollowingInProgress}
     followingInProgress={this.props.followingInProgress}
+    followThunkCreator={this.props.followThunkCreator}
+    UnfollowThunkCreator={this.props.UnfollowThunkCreator}
     />;
   }
 }
@@ -83,7 +59,8 @@ let mapStateToProps=(state)=>{
   }
 }
 let mapDispatchToProps={
-  follow,unfollow,setUsers,SetCurrentPage,SetTotalCount,
-  buttonForward,buttonBackward,SetPages,IsFetching_action,followingInProgress
+  follow,unfollow,
+  buttonForward,buttonBackward,
+  followingInProgress,GetUsersThunkCreator,UnfollowThunkCreator,followThunkCreator
 }
 export  let Users_container = connect(mapStateToProps,mapDispatchToProps)(UsersAPI);

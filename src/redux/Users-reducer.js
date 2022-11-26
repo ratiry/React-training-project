@@ -1,5 +1,4 @@
-
-
+import { USERS_API } from './../API/API';
 const FOLLOW = 'follow';
 const UNFOLLOW = 'unfollow';
 const CHANGE_CURRENT_PAGE='ChangeCurrentPage';
@@ -20,6 +19,34 @@ let initialization = {
   LengthPageArray:15,
   IsFetching:false,
   IsfollowingInProgress:[]
+} 
+export let GetUsersThunkCreator =(CurrentPage,PageSize)=>(dispatch)=>{
+  dispatch(IsFetching_action(true));
+  dispatch(SetCurrentPage(CurrentPage));
+  USERS_API.GetUsers(CurrentPage,PageSize).then(data=> {
+      dispatch(IsFetching_action(false));
+      dispatch(setUsers(data.items));
+      dispatch(SetTotalCount(data.totalCount));
+      dispatch(SetPages());
+    })
+}
+export let UnfollowThunkCreator =(id)=>(dispatch)=>{
+         dispatch(followingInProgress(true,id));
+          USERS_API.delete_follow(id).then(response=> {
+            if(response.data.resultCode ===0){
+              dispatch(unfollow(id));
+            }
+            dispatch(followingInProgress(false,id));
+    })
+}
+export let followThunkCreator =(id)=>(dispatch)=>{
+  dispatch(followingInProgress(true,id));
+   USERS_API.post_follow(id).then(response=> {
+     if(response.data.resultCode ===0){
+       dispatch(follow(id));
+     }
+     dispatch(followingInProgress(false,id));
+})
 }
 export let followingInProgress=(IsfollowingInProgress,id)=>{
   return{

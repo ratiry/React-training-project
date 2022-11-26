@@ -11,7 +11,7 @@ let Users = (props)=>{
   }
   let Beforelements = props.BeforeCurrentPageArray.map(p=>{return <span onClick={()=>{ props.OnPageChange(p)}} >{p}</span>})
   let Afterelements = props.AfterCurrentPageArray.map(p=>{return <span onClick={()=>{ props.OnPageChange(p)}} >{p}</span>})
-  let Userselements= props.Users_array.map((u) => <User_List key={u.id} name={u.name} followed={u.followed} description={u.status} location={u.location} photoURL={u.photos.small} follow={props.follow} unfollow={props.unfollow} id={u.id} followingInProgress={props.followingInProgress} IsfollowingInProgress={props.IsfollowingInProgress}/>);
+  let Userselements= props.Users_array.map((u) => <User_List key={u.id} name={u.name} followed={u.followed} description={u.status} location={u.location} photoURL={u.photos.small} follow={props.follow} unfollow={props.unfollow} id={u.id} followingInProgress={props.followingInProgress} IsfollowingInProgress={props.IsfollowingInProgress} followThunkCreator={props.followThunkCreator} UnfollowThunkCreator={props.UnfollowThunkCreator}/>);
 
   return(
     <div className={classes.users}>
