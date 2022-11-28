@@ -5,14 +5,13 @@ import Wall from './wall';
 import {addChangeNewPostTextActionCreator,addPostActionCreator } from './../../../redux/Wall-reducer';
 import { connect } from 'react-redux';
 import React from 'react';
-import  axios  from 'axios';
 import { SetUserProfile } from './../../../redux/Wall-reducer';
 import {
   useLocation,
   useNavigate,
   useParams
 } from "react-router-dom";
-
+import { GetProfileThunk } from './../../../redux/Wall-reducer';
 function withRouter(Component) {
   function ComponentWithRouterProp(props) {
     let location = useLocation();
@@ -45,6 +44,9 @@ let mapDispatchToProps = (dispatch)=>{
     },
     SetUserProfile:(data)=>{
       dispatch(SetUserProfile(data));
+    },
+    GetProfileThunk:(id)=>{
+      dispatch(GetProfileThunk(id));
     }
   }
 }
@@ -54,11 +56,7 @@ class Wall_API extends React.Component{
     if(!userId){
       userId=2;
     }
-    axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`).then(response=> {
-      console.log(response.data);
-      ;
-      this.props.SetUserProfile(response.data);
-    })
+    this.props.GetProfileThunk(userId);
   }
   render(){
     return(

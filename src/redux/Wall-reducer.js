@@ -1,3 +1,5 @@
+import { GetProfile_API } from "../API/API";
+
 const ADD_POST='ADD-POST';
 const CHANGE_NEW_POST_TEXT = 'CHANGE-NEW-POST-TEXT';
 const SET_USER_PROFILE='SET_USER_PROFILE';
@@ -12,6 +14,11 @@ let initialization ={
   status:'LeArNiNing ReAcT',
   profile:null,
   allContactsAreUnderfined:'I do not want to share my contacts!!!'
+}
+export let GetProfileThunk=(id)=>(dispatch)=>{
+  GetProfile_API.Get_Profile(id).then(response=> {
+    dispatch( SetUserProfile(response.data));
+  })
 }
 export const Wall_reducer=(State=initialization,action)=>{
 

@@ -1,6 +1,5 @@
 import { connect } from 'react-redux';
 import { follow, unfollow,  buttonBackward, buttonForward,  followingInProgress, GetUsersThunkCreator,followThunkCreator,UnfollowThunkCreator } from './../../../redux/Users-reducer';
-import axios from 'axios';
 import React from 'react';
 import Users from './Users';
 import { USERS_API } from '../../../API/API';
