@@ -9,7 +9,8 @@ import { SetUserProfile } from './../../../redux/Wall-reducer';
 import {
   useLocation,
   useNavigate,
-  useParams
+  useParams,
+  Navigate
 } from "react-router-dom";
 import { GetProfileThunk } from './../../../redux/Wall-reducer';
 function withRouter(Component) {
@@ -29,7 +30,8 @@ function withRouter(Component) {
 }
 let mapStateToProps = (state)=>{
   return{
-    Wall:state.Wall
+    Wall:state.Wall,
+    IsAuth:state.auth.IsAuth
   }
 }
 let mapDispatchToProps = (dispatch)=>{
@@ -59,8 +61,10 @@ class Wall_API extends React.Component{
     this.props.GetProfileThunk(userId);
   }
   render(){
+    if(!this.props.IsAuth) return <Navigate to='/login'/>
+    
     return(
-      <Wall Wall={this.props.Wall} addPost_0={this.props.addPost_0} Textarea_altering={this.props.Textarea_altering}/>
+      <Wall Wall={this.props.Wall} addPost_0={this.props.addPost_0} Textarea_altering={this.props.Textarea_altering} IsAuth={this.props.IsAuth} id={this.props.router.params.userId}/>
     )
   }
 }

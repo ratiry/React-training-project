@@ -3,16 +3,24 @@ import React from 'react';
 import User from './User/User';
 import Message from './Message/Message';
 import { addMessageActionCreator,changeNewMessageText } from '../../../redux/Dialogs-reducer'; 
+import { Navigate } from 'react-router-dom';
 const Dialogs =(props)=>{
   let Messages_elements = props.Dialogs.dataMessages.map( (message) => <Message message={message.message} whose={message.whose} Name ={message.Name} />)
   let Dialogs_elements = props.Dialogs.dataUsers.map( (name) => <User name={name.name} id={name.id} />)
   let textarea = React.useRef();
+  let Navigate_f =()=>{
+   return  <Navigate  to="/login" />
+  }
+  if(!props.IsAuth) return Navigate_f();
+  
+  
   let addMessage =()=>{
     props.addMessage();
   }
   let altering_textarea=()=>{
     props.alteringTextarea(textarea.current.value);
   }
+
   return(
     <div className={classes.Dialogs}>
       <h4>Dialogs</h4>

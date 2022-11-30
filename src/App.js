@@ -8,6 +8,7 @@ import Wall_container from './components/Content/wall/wall_container';
 import SideBar_container from './components/Sidebar/SideBar_container';
 import { Users_container } from './components/Content/Users/Users_container';
 import HeaderComponent from './components/Header/Header_container';
+import Login from './components/Content/Login/Login';
 function App(props) {
   return (
     <BrowserRouter>
@@ -24,6 +25,7 @@ function App(props) {
             <Route path="/Dialogs*" element={<Dialogs_container/>}/>
             <Route path ='/Messages*' element={<Messages/>}/>
             <Route path ='/Users*' element={<Users_container/>}/>
+            <Route path='/login*' element={<Login/>}/>
           </Routes>
         </div>
       </main>

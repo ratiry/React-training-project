@@ -5,7 +5,8 @@ const IsFetching_const='IsFetching';
 let initialization = {
   email:null,
   login:null,
-  userId:null
+  userId:null,
+  IsAuth:false
 }
 export let GetAuthThunk=()=>(dispatch)=>{
   dispatch(IsFetching_action(true));
@@ -33,8 +34,13 @@ export let set_data_user = (email,login,userId)=>{
 export const auth_reducer=(State=initialization,action)=>{
   switch(action.type){
       case SET_USER_DATA:
+        let IsAuth=false;
+        if(action.data.email!=='none'){
+          IsAuth=true;
+        }
         return{
           ...State,
+          IsAuth:IsAuth,
           ...action.data
         }
       default :

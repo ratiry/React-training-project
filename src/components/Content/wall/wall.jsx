@@ -4,6 +4,7 @@ import classes from './wall.module.scss';
 import Preloader from '../../Preloader/Preloader.jsx';
 import User_anonymos from './../../../images/User_anonymos.jpeg';
 import Profile_inf_item from './profile_inf_item';
+import { Navigate } from 'react-router-dom';
 let Wall = function(props){
   let Posts_Elements = props.Wall.DataPosts.map((p) => <Post message={p.message} name={p.name} Likes={p.Likes}/>)
   let contacts=[];
