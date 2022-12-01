@@ -6,7 +6,7 @@ let initialization = {
   email:null,
   login:null,
   userId:null,
-  IsAuth:false
+  IsAuth:'none'
 }
 export let GetAuthThunk=()=>(dispatch)=>{
   dispatch(IsFetching_action(true));

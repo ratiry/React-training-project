@@ -8,10 +8,8 @@ const Dialogs =(props)=>{
   let Messages_elements = props.Dialogs.dataMessages.map( (message) => <Message message={message.message} whose={message.whose} Name ={message.Name} />)
   let Dialogs_elements = props.Dialogs.dataUsers.map( (name) => <User name={name.name} id={name.id} />)
   let textarea = React.useRef();
-  let Navigate_f =()=>{
-   return  <Navigate  to="/login" />
-  }
-  if(!props.IsAuth) return Navigate_f();
+
+  
   
   
   let addMessage =()=>{

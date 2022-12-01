@@ -13,6 +13,7 @@ import {
   Navigate
 } from "react-router-dom";
 import { GetProfileThunk } from './../../../redux/Wall-reducer';
+import { WithRedicrectComponent } from '../../../HOC/AuthwithRedirect';
 function withRouter(Component) {
   function ComponentWithRouterProp(props) {
     let location = useLocation();
@@ -31,7 +32,6 @@ function withRouter(Component) {
 let mapStateToProps = (state)=>{
   return{
     Wall:state.Wall,
-    IsAuth:state.auth.IsAuth
   }
 }
 let mapDispatchToProps = (dispatch)=>{
@@ -61,13 +61,13 @@ class Wall_API extends React.Component{
     this.props.GetProfileThunk(userId);
   }
   render(){
-    if(!this.props.IsAuth) return <Navigate to='/login'/>
     
     return(
       <Wall Wall={this.props.Wall} addPost_0={this.props.addPost_0} Textarea_altering={this.props.Textarea_altering} IsAuth={this.props.IsAuth} id={this.props.router.params.userId}/>
     )
   }
 }
-let Wall_with_Url_data = withRouter(Wall_API);
+let Wall_with_auth_redirect = WithRedicrectComponent(Wall_API);
+let Wall_with_Url_data = withRouter(Wall_with_auth_redirect);
 let Wall_container = connect(mapStateToProps,mapDispatchToProps)(Wall_with_Url_data);
 export default Wall_container;
