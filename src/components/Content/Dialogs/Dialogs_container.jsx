@@ -3,6 +3,7 @@ import { addMessageActionCreator,changeNewMessageText } from '../../../redux/Dia
 import Dialogs from './Dialogs';
 import { connect } from 'react-redux';
 import { WithRedicrectComponent } from './../../../HOC/AuthwithRedirect';
+import { compose } from 'redux';
 
 
 let mapStateToProps =(state)=>{
@@ -22,6 +23,8 @@ let mapDispatchToProps =(dispatch)=>{
     }
   }
 }
-let Dialogs_with_auth_redirect=WithRedicrectComponent(Dialogs);
-let Dialogs_container = connect(mapStateToProps,mapDispatchToProps)(Dialogs_with_auth_redirect);
-export default Dialogs_container;
+let composed_Dialogs = compose(
+  WithRedicrectComponent,
+  connect(mapStateToProps,mapDispatchToProps)
+)(Dialogs);
+export default composed_Dialogs;

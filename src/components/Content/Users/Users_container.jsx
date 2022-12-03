@@ -3,6 +3,7 @@ import { follow, unfollow,  buttonBackward, buttonForward,  followingInProgress,
 import React from 'react';
 import Users from './Users';
 import { USERS_API } from '../../../API/API';
+import { compose } from 'redux';
 class UsersAPI extends React.Component{
   componentDidMount(){
     this.props.GetUsersThunkCreator(this.props.CurrentPage,this.props.PageSize);
@@ -62,4 +63,8 @@ let mapDispatchToProps={
   buttonForward,buttonBackward,
   followingInProgress,GetUsersThunkCreator,UnfollowThunkCreator,followThunkCreator
 }
-export  let Users_container = connect(mapStateToProps,mapDispatchToProps)(UsersAPI);
+let Users_container = connect(mapStateToProps,mapDispatchToProps)(UsersAPI);
+let  Composed_Users = compose(
+  connect(mapStateToProps,mapDispatchToProps)
+)(UsersAPI);
+export default Composed_Users;

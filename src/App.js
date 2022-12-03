@@ -6,7 +6,7 @@ import Messages from './components/Content/Messages/Messages';
 import Dialogs_container from './components/Content/Dialogs/Dialogs_container';
 import Wall_container from './components/Content/wall/wall_container';
 import SideBar_container from './components/Sidebar/SideBar_container';
-import { Users_container } from './components/Content/Users/Users_container';
+import  Users_container  from './components/Content/Users/Users_container';
 import HeaderComponent from './components/Header/Header_container';
 import Login from './components/Content/Login/Login';
 function App(props) {

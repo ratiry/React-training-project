@@ -6,6 +6,7 @@ import Header from './Header';
 import { GetAuthThunk } from './../../redux/auth_reducer.js';
 import {set_data_user,IsFetching_action} from './../../redux/auth_reducer.js';
 import { connect } from 'react-redux';
+import { compose } from 'redux';
 class HeaderComponent extends React.Component {
   componentDidMount(){
     this.props.GetAuthThunk();
@@ -24,4 +25,7 @@ let mapStateToProps=(State)=>{
 let mapDispatchToProps={
   set_data_user,IsFetching_action,GetAuthThunk
 }
-export default connect(mapStateToProps,mapDispatchToProps)(HeaderComponent);
+let composed_Header=compose(
+  connect(mapStateToProps,mapDispatchToProps)
+)(HeaderComponent);
+export default composed_Header;

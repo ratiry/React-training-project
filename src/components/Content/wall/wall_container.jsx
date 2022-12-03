@@ -14,20 +14,23 @@ import {
 } from "react-router-dom";
 import { GetProfileThunk } from './../../../redux/Wall-reducer';
 import { WithRedicrectComponent } from '../../../HOC/AuthwithRedirect';
-function withRouter(Component) {
-  function ComponentWithRouterProp(props) {
-    let location = useLocation();
-    let navigate = useNavigate();
-    let params = useParams();
-    return (
-      <Component
-        {...props}
-        router={{ location, navigate, params }}
-      />
-    );
-  }
+import { compose } from 'redux';
+import { withRouter } from './../../../HOC/WithRouterProps';
 
-  return ComponentWithRouterProp;
+class Wall_API extends React.Component{
+  componentDidMount(){
+    let userId = this.props.router.params.userId;
+    if(!userId){
+      userId=1045;
+    }
+    this.props.GetProfileThunk(userId);
+  }
+  render(){
+    
+    return(
+      <Wall Wall={this.props.Wall} addPost_0={this.props.addPost_0} Textarea_altering={this.props.Textarea_altering} IsAuth={this.props.IsAuth} id={this.props.router.params.userId}/>
+    )
+  }
 }
 let mapStateToProps = (state)=>{
   return{
@@ -52,22 +55,9 @@ let mapDispatchToProps = (dispatch)=>{
     }
   }
 }
-class Wall_API extends React.Component{
-  componentDidMount(){
-    let userId = this.props.router.params.userId;
-    if(!userId){
-      userId=2;
-    }
-    this.props.GetProfileThunk(userId);
-  }
-  render(){
-    
-    return(
-      <Wall Wall={this.props.Wall} addPost_0={this.props.addPost_0} Textarea_altering={this.props.Textarea_altering} IsAuth={this.props.IsAuth} id={this.props.router.params.userId}/>
-    )
-  }
-}
-let Wall_with_auth_redirect = WithRedicrectComponent(Wall_API);
-let Wall_with_Url_data = withRouter(Wall_with_auth_redirect);
-let Wall_container = connect(mapStateToProps,mapDispatchToProps)(Wall_with_Url_data);
-export default Wall_container;
+let composed_Wall = compose(
+  WithRedicrectComponent,
+  withRouter,
+  connect(mapStateToProps,mapDispatchToProps),
+)(Wall_API)
+export default composed_Wall;
