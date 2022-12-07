@@ -6,12 +6,6 @@ import {addChangeNewPostTextActionCreator,addPostActionCreator } from './../../.
 import { connect } from 'react-redux';
 import React from 'react';
 import { SetUserProfile } from './../../../redux/Wall-reducer';
-import {
-  useLocation,
-  useNavigate,
-  useParams,
-  Navigate
-} from "react-router-dom";
 import { GetProfileThunk } from './../../../redux/Wall-reducer';
 import { WithRedicrectComponent } from '../../../HOC/AuthwithRedirect';
 import { compose } from 'redux';
