@@ -1,15 +1,14 @@
 import Profile_inf_item from './profile_inf_item';
 import classes from './wall.module.scss';
 import User_anonymos from './../../../images/User_anonymos.jpeg';
+import StatusProfile from './StatusProfile';
 let ProfileInfo=(props)=>{
   return(
   <>
    <div>
     {props.Wall.profile.photos.large?<img src={props.Wall.profile.photos.large} alt="" />:
     <img src={User_anonymos}/>}
-  <div>
-    <span>{props.Wall.profile.aboutMe}</span>
-  </div>
+    <StatusProfile aboutMe={props.Wall.profile.aboutMe} />
   </div>
   <div className={classes.profile_inf_container}>
     <Profile_inf_item name='full Name:' value={props.Wall.profile.fullName}/>
