@@ -6,7 +6,15 @@ let instance = axios.create({
 })
 export let GetProfile_API={
   Get_Profile(id){
-    return instance.get(`profile/${id}`)
+    let adress= instance.get(`profile/${id}`);
+    debugger;
+    return adress;
+  },
+  Update_Status:(status)=>{
+    return instance.put(`profile`,{status:status})
+  },
+  GetStatus:(id)=>{
+    return instance.get(`profile/status/${id}`)
   }
 }
 export let auth_API ={

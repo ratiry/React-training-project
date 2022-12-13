@@ -34,7 +34,7 @@ let Wall = function(props){
     return(
       <div className={classes.Wall}>
         <h4>Wall</h4>
-        <ProfileInfo Wall={props.Wall} elements_contacts={elements_contacts}/>
+        <ProfileInfo UpdateStatusThunk={props.UpdateStatusThunk} Wall={props.Wall} elements_contacts={elements_contacts}/>
         <Textarea_wall 
         addPost_0={props.addPost_0}
         Textarea_altering={props.Textarea_altering}

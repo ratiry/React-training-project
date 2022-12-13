@@ -17,8 +17,8 @@ class StatusProfile extends React.Component{
   render(){
     return(
       <div>
-        {this.state.editMode ?<input autoFocus={true} value={this.props.aboutMe} onBlur={this.DeacticateEditMode} type="text" />:
-        <span onDoubleClick={this.ActivateEditMode}>{this.props.aboutMe}</span> }
+        {this.state.editMode ?<input autoFocus={true} value={this.props.status} onBlur={this.DeacticateEditMode} type="text" />:
+        <span onDoubleClick={this.ActivateEditMode}>{this.props.status}</span> }
       </div>
     )
   }

@@ -9,7 +9,9 @@ import { SetUserProfile } from './../../../redux/Wall-reducer';
 import { GetProfileThunk } from './../../../redux/Wall-reducer';
 import { WithRedicrectComponent } from '../../../HOC/AuthwithRedirect';
 import { compose } from 'redux';
+import { GetStatusThunk } from './../../../redux/Wall-reducer';
 import { withRouter } from './../../../HOC/WithRouterProps';
+import { UpdateStatusThunk } from './../../../redux/Wall-reducer';
 
 class Wall_API extends React.Component{
   componentDidMount(){
@@ -18,11 +20,11 @@ class Wall_API extends React.Component{
       userId=1045;
     }
     this.props.GetProfileThunk(userId);
+    this.props.GetStatusThunk(userId);
   }
   render(){
-    
     return(
-      <Wall Wall={this.props.Wall} addPost_0={this.props.addPost_0} Textarea_altering={this.props.Textarea_altering} IsAuth={this.props.IsAuth} id={this.props.router.params.userId}/>
+      <Wall UpdateStatusThunk={this.props.UpdateStatusThunk}  Wall={this.props.Wall} addPost_0={this.props.addPost_0} Textarea_altering={this.props.Textarea_altering} IsAuth={this.props.IsAuth} id={this.props.router.params.userId}/>
     )
   }
 }
@@ -46,6 +48,12 @@ let mapDispatchToProps = (dispatch)=>{
     },
     GetProfileThunk:(id)=>{
       dispatch(GetProfileThunk(id));
+    },
+    GetStatusThunk:(id)=>{
+      dispatch(GetStatusThunk(id));
+    },
+    UpdateStatusThunk:(status)=>{
+      dispatch(UpdateStatusThunk(status));
     }
   }
 }
