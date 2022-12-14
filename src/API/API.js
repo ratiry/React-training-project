@@ -7,7 +7,6 @@ let instance = axios.create({
 export let GetProfile_API={
   Get_Profile(id){
     let adress= instance.get(`profile/${id}`);
-    debugger;
     return adress;
   },
   Update_Status:(status)=>{

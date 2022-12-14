@@ -8,7 +8,7 @@ let ProfileInfo=(props)=>{
    <div>
     {props.Wall.profile.photos.large?<img src={props.Wall.profile.photos.large} alt="" />:
     <img src={User_anonymos}/>}
-    <StatusProfile status={props.Wall.status} />
+    <StatusProfile UpdateStatusThunk={props.UpdateStatusThunk} status={props.Wall.status} />
   </div>
   <div className={classes.profile_inf_container}>
     <Profile_inf_item name='full Name:' value={props.Wall.profile.fullName}/>
