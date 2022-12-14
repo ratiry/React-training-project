@@ -10,7 +10,7 @@ export let GetProfile_API={
     return adress;
   },
   Update_Status:(status)=>{
-    return instance.put(`profile`,{status:status})
+    return instance.put(`profile/status`,{status:status})
   },
   GetStatus:(id)=>{
     return instance.get(`profile/status/${id}`)

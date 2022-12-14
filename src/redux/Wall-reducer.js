@@ -19,7 +19,7 @@ let initialization ={
 export let UpdateStatusThunk=(status)=>(dispatch)=>{
   GetProfile_API.Update_Status(status).then(response=>{
     if(response.data.resultCode==0){
-      dispatch(SetStatus(response.data));
+      dispatch(SetStatus(status));
     }
   })
 }

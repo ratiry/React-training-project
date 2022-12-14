@@ -14,6 +14,7 @@ class StatusProfile extends React.Component{
     this.setState({
       editMode:false
     });
+    this.props.UpdateStatusThunk(this.state.status); 
   }
   onChangeInput=(e)=>{
     this.setState({
@@ -23,8 +24,9 @@ class StatusProfile extends React.Component{
   render(){
     return(
       <div>
-        {this.state.editMode ?<input onChange={this.onChangeInput} autoFocus={true} value={this.state.status} onBlur={this.DeacticateEditMode} type="text" />:
-        <span onDoubleClick={this.ActivateEditMode}>{this.props.status}</span> }
+        {/* {!this.state.status ? <span onDoubleClick={this.ActivateEditMode}>You have no status  doubleclick to change It!</span> : <></>} */}
+        {this.state.editMode  ?<input onChange={this.onChangeInput} autoFocus={true} value={this.state.status} onBlur={this.DeacticateEditMode} type="text" />:
+        <span onDoubleClick={this.ActivateEditMode}>{this.props.status ? this.props.status:'no status , but I can change it - doubleclick on this'}</span> }
       </div>
     )
   }

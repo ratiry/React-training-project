@@ -17,8 +17,9 @@ class Wall_API extends React.Component{
   componentDidMount(){
     let userId = this.props.router.params.userId;
     if(!userId){
-      userId=1045;
+      userId=26570;
     }
+    
     this.props.GetProfileThunk(userId);
     this.props.GetStatusThunk(userId);
   }
@@ -54,7 +55,7 @@ let mapDispatchToProps = (dispatch)=>{
     },
     UpdateStatusThunk:(status)=>{
       dispatch(UpdateStatusThunk(status));
-    }
+    },
   }
 }
 let composed_Wall = compose(
