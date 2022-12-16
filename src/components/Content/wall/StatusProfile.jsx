@@ -21,12 +21,20 @@ class StatusProfile extends React.Component{
       status:e.currentTarget.value
     });
   }
+  componentDidUpdate(PP,PS){
+    debugger
+    if(PP.status !=PS.status){
+      this.setState({
+        status:this.props.status
+      })
+    }
+  }
   render(){
     return(
       <div>
         {/* {!this.state.status ? <span onDoubleClick={this.ActivateEditMode}>You have no status  doubleclick to change It!</span> : <></>} */}
         {this.state.editMode  ?<input onChange={this.onChangeInput} autoFocus={true} value={this.state.status} onBlur={this.DeacticateEditMode} type="text" />:
-        <span onDoubleClick={this.ActivateEditMode}>{this.props.status ? this.props.status:'no status , but I can change it - doubleclick on this'}</span> }
+        <span onDoubleClick={this.ActivateEditMode}>{this.props.status ? this.props.status:'----'}</span> }
       </div>
     )
   }

@@ -13,7 +13,7 @@ let initialization = {
   Users_array:[],
   PageSize:5,
   TotalUsersCount:0,
-  CurrentPage:4290,
+  CurrentPage:1,
   BeforeCurrentPageArray:[],
   AfterCurrentPageArray:[],
   LengthPageArray:15,

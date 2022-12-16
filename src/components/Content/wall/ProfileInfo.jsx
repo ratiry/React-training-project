@@ -4,7 +4,7 @@ import User_anonymos from './../../../images/User_anonymos.jpeg';
 import StatusProfile from './StatusProfile';
 let ProfileInfo=(props)=>{
   return(
-  <>
+  <div>
    <div>
     {props.Wall.profile.photos.large?<img src={props.Wall.profile.photos.large} alt="" />:
     <img src={User_anonymos}/>}
@@ -18,7 +18,7 @@ let ProfileInfo=(props)=>{
     <h5>Contacts</h5>
     {props.elements_contacts}
   </div>
-  </>
+  </div>
 
   )
 }
