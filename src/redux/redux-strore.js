@@ -7,12 +7,14 @@ import { SideBar_reducer } from './SideBar_reducer';
 import { Users_reducer } from './Users-reducer';
 import { auth_reducer } from './auth_reducer';
 import thunk  from 'redux-thunk';
+import {reducer as formReducer} from 'redux-form';
 let reducers=combineReducers({
   Wall:Wall_reducer,
   Dialogs:Dialogs_reducer,
   SideBar:SideBar_reducer,
   Users:Users_reducer,
-  auth:auth_reducer
+  auth:auth_reducer,
+  form:formReducer
 })
 let store = createStore(reducers,applyMiddleware(thunk));
 window.store= store;
