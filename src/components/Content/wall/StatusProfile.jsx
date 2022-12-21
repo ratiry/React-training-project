@@ -22,12 +22,9 @@ class StatusProfile extends React.Component{
     });
   }
   componentDidUpdate(PP,PS){
-    debugger
-    if(PP.status !=PS.status){
-      this.setState({
-        status:this.props.status
-      })
-    }
+
+    
+    
   }
   render(){
     return(
