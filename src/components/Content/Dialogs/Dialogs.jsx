@@ -2,23 +2,25 @@ import classes from './Dialogs.module.scss';
 import React from 'react';
 import User from './User/User';
 import Message from './Message/Message';
-import { addMessageActionCreator,changeNewMessageText } from '../../../redux/Dialogs-reducer'; 
 import { Navigate } from 'react-router-dom';
+import { Field } from 'redux-form';
+import {reduxForm} from 'redux-form';
+let DialogsForm=(props)=>{
+  return(
+  <form className={classes.textarea_container} onSubmit={props.handleSubmit}>
+    <Field component={'textarea'} name={'DialogsTextarea'}  /> 
+    <button >send</button>
+  </form>
+  )
+}
+DialogsForm=reduxForm({form:'DialogsForm'})(DialogsForm);
 const Dialogs =(props)=>{
   let Messages_elements = props.Dialogs.dataMessages.map( (message) => <Message message={message.message} whose={message.whose} Name ={message.Name} />)
   let Dialogs_elements = props.Dialogs.dataUsers.map( (name) => <User name={name.name} id={name.id} />)
-  let textarea = React.useRef();
+  let addMessage =(value)=>{
+    props.addMessage(value.DialogsTextarea);
 
-  
-  
-  
-  let addMessage =()=>{
-    props.addMessage();
   }
-  let altering_textarea=()=>{
-    props.alteringTextarea(textarea.current.value);
-  }
-
   return(
     <div className={classes.Dialogs}>
       <h4>Dialogs</h4>
@@ -29,12 +31,10 @@ const Dialogs =(props)=>{
         <div className={classes.messages}>
           { Messages_elements }
         </div>
-        <div className={classes.textarea_container}>
-          <textarea value={props.Dialogs.new_text_Dialogs} onChange={altering_textarea} ref={textarea}> </textarea>
-          <button onClick={addMessage}>send</button>
-        </div>
       </div>
+      <DialogsForm onSubmit={addMessage}/>
     </div>
   );
 }
+
 export default Dialogs;

@@ -14,13 +14,13 @@ let initialization={
     { message:'gibberish', whose:'coversator',Name:'Name'},
     { message:'fdghj', whose:'conversator', Name:'Name'},
   ],
-  new_text_Dialogs:''
 }
 export const Dialogs_reducer=(State=initialization,action)=>{
  switch(action.type){
     case ADD_MESSAGE:
+      debugger;
       let newMessage={
-        message:State.new_text_Dialogs,
+        message:action.value,
         whose:'my',
         Name:'Name'
       }
@@ -38,14 +38,10 @@ export const Dialogs_reducer=(State=initialization,action)=>{
      return State;
  }
 }
-export let addMessageActionCreator=()=>{
+export let addMessageActionCreator=(value)=>{
   return{
     type:ADD_MESSAGE,
+    value
   }
  } 
- export let changeNewMessageText=(value)=>{
-  return{
-    type:CHANGE_NEW_MESSAGE_TEXT,
-    value:value
-  }
- }
+ 
