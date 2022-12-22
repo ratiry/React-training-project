@@ -1,19 +1,23 @@
 import classes from './Textarea_wall.module.scss';
 import React from 'react';
+import { reduxForm, Field } from 'redux-form';
+let TextareaForm=(props)=>{
+  return(
+    <form  className={classes.textarea_container} onSubmit={props.handleSubmit}>
+      <p className={classes.offer_to_write}>Write your own gibberish</p>
+      <Field  component={'textarea'} name={'newPost'}></Field>
+      <button>send</button>
+  </form>
+  )
+}
+TextareaForm=reduxForm({form:'newPostForm'})(TextareaForm);
 function Textarea_wall(props){
-  let textarea = React.useRef();
-  let addPost_0 =()=>{
-    props.addPost_0();
-  }
-  let Textarea_altering=()=>{
-    props.Textarea_altering(textarea.current.value);
+  let addPost_0 =(value)=>{
+    props.addPost_0(value.newPost)
   }
   return(
-    <div className={classes.textarea_container}>
-      <p className={classes.offer_to_write}>Write your own gibberish</p>
-      <textarea ref={textarea} onChange={Textarea_altering}  value={props.new_text} ></textarea>
-      <button onClick={addPost_0}>send</button>
-  </div>
+    <TextareaForm onSubmit={addPost_0}/>
   );
 };
+
 export default Textarea_wall;

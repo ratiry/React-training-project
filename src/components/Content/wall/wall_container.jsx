@@ -1,8 +1,5 @@
-// import Textarea_wall from './Textarea_wall/Textarea_wall.jsx';
-// import Post from './post/Post';
-// import classes from './wall.module.scss';
 import Wall from './wall';
-import {addChangeNewPostTextActionCreator,addPostActionCreator } from './../../../redux/Wall-reducer';
+import {addPostActionCreator } from './../../../redux/Wall-reducer';
 import { connect } from 'react-redux';
 import React from 'react';
 import { SetUserProfile } from './../../../redux/Wall-reducer';
@@ -36,12 +33,8 @@ let mapStateToProps = (state)=>{
 }
 let mapDispatchToProps = (dispatch)=>{
   return{
-    addPost_0:()=>{
-      let action = addPostActionCreator(); 
-      dispatch(action);
-    },
-    Textarea_altering:(text)=>{
-      let action = addChangeNewPostTextActionCreator(text) 
+    addPost_0:(value)=>{
+      let action = addPostActionCreator(value); 
       dispatch(action);
     },
     SetUserProfile:(data)=>{
