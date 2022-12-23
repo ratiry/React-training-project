@@ -1,6 +1,6 @@
-import classes from './Textarea_wall.module.scss';
+import classes from './Textarea.module.scss';
 
-let subTextarea_Wall=({input , meta, ...props})=>{
+let Textarea=({input , meta, ...props})=>{
   const ConditionError = meta.error && meta.touched;
   return(
     <>
@@ -11,4 +11,4 @@ let subTextarea_Wall=({input , meta, ...props})=>{
     </>
   )
 }
-export default subTextarea_Wall;
+export default Textarea;

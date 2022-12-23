@@ -1,0 +1,14 @@
+.textsContainer{
+  grid-column-start: 1;
+  grid-column-end: 3;
+  .offer_to_write{
+    font-size:25px;
+    font-family: font_with_light_shadow;
+  }
+  .errorSpan{
+    font-family: font_with_light_shadow;
+    color:red;
+    font-size:15px;
+    text-transform: uppercase;
+  }
+}
