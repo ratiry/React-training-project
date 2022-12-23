@@ -18,7 +18,6 @@ let initialization={
 export const Dialogs_reducer=(State=initialization,action)=>{
  switch(action.type){
     case ADD_MESSAGE:
-      debugger;
       let newMessage={
         message:action.value,
         whose:'my',

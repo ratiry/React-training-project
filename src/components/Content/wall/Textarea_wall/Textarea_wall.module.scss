@@ -8,11 +8,19 @@
   display: grid;
   grid-template-rows: 1fr 1fr;
   grid-template-columns: 5fr 1fr;
-  .offer_to_write{
-    font-size:25px;
+  .textsContainer{
     grid-column-start: 1;
     grid-column-end: 3;
-    font-family: font_with_light_shadow;
+    .offer_to_write{
+      font-size:25px;
+      font-family: font_with_light_shadow;
+    }
+    .errorSpan{
+      font-family: font_with_light_shadow;
+      color:red;
+      font-size:15px;
+      text-transform: uppercase;
+    }
   }
   button{
     border-radius: 0 0 50px 0px;
@@ -21,5 +29,8 @@
     width: 95%;
     font-size:20px;
     margin-left: 5%;
+  }
+  &.error{
+  
   }
 }

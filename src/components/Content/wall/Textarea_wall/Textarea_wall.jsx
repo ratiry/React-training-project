@@ -2,13 +2,13 @@ import classes from './Textarea_wall.module.scss';
 import React from 'react';
 import { requiredField,maxLengthCreator,minLengthCreator } from '../../../../Utils/validations/validators';
 import { reduxForm, Field } from 'redux-form';
+import subTextarea_Wall from './subTextarea_Wall';
 let MaxLength10 = maxLengthCreator(10);
 let MinLength5 = minLengthCreator(5);
 let TextareaForm=(props)=>{
   return(
-    <form  className={classes.textarea_container} onSubmit={props.handleSubmit}>
-      <p className={classes.offer_to_write}>Write your own gibberish</p>
-      <Field  component={'textarea'} name={'newPost'} validate={[requiredField,MaxLength10,MinLength5]}></Field>
+    <form  className={classes.textarea_container + ' ' + classes.error} onSubmit={props.handleSubmit}>
+      <Field  component={subTextarea_Wall} name={'newPost'} validate={[requiredField,MaxLength10,MinLength5]}></Field>
       <button>send</button>
   </form>
   )
