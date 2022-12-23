@@ -1,4 +1,4 @@
-import loading_gif from './../../images/loading_gif.gif';
+import loading_gif from './../../../images/loading_gif.gif';
 import classes from './Preloader.module.scss';
 let Preloader=(props)=>{
   return(

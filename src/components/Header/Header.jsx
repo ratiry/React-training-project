@@ -1,4 +1,4 @@
-import Preloader from '../Preloader/Preloader';
+import Preloader from './../Common/Preloader/Preloader';
 import logo from './../../logo.svg';
 import classes from './Header.module.scss';
 import { NavLink } from 'react-router-dom';

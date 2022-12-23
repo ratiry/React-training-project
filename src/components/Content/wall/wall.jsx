@@ -1,7 +1,7 @@
 import Textarea_wall from './Textarea_wall/Textarea_wall.jsx';
 import Post from './post/Post';
 import classes from './wall.module.scss';
-import Preloader from '../../Preloader/Preloader.jsx';
+import Preloader from '../../Common/Preloader/Preloader.jsx';
 import User_anonymos from './../../../images/User_anonymos.jpeg';
 import Profile_inf_item from './profile_inf_item';
 import { Navigate } from 'react-router-dom';
