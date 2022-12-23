@@ -5,10 +5,14 @@ import Message from './Message/Message';
 import { Navigate } from 'react-router-dom';
 import { Field } from 'redux-form';
 import {reduxForm} from 'redux-form';
+import Textarea from '../../Common/Textarea/Textarea';
+import { maxLengthCreator, minLengthCreator, requiredField } from '../../../Utils/validations/validators';
+let maxLength100=maxLengthCreator(100);
+let minLength5= minLengthCreator(5);
 let DialogsForm=(props)=>{
   return(
   <form className={classes.textarea_container} onSubmit={props.handleSubmit}>
-    <Field component={'textarea'} name={'DialogsTextarea'}  /> 
+    <Field component={Textarea} name={'DialogsTextarea'} validate={[requiredField,maxLength100,minLength5]} /> 
     <button >send</button>
   </form>
   )

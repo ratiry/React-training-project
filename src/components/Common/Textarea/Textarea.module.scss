@@ -1,14 +1,11 @@
 .textsContainer{
   grid-column-start: 1;
   grid-column-end: 3;
-  .offer_to_write{
-    font-size:25px;
-    font-family: font_with_light_shadow;
-  }
   .errorSpan{
-    font-family: font_with_light_shadow;
+    font-family:'Courier New', Courier, monospace;
+    font-weight: bold;
     color:red;
-    font-size:15px;
+    font-size:20px;
     text-transform: uppercase;
   }
 }

@@ -5,7 +5,7 @@ let Textarea=({input , meta, ...props})=>{
   return(
     <>
      <div className={classes.textsContainer }>
-      {ConditionError?<p className={classes.errorSpan}>error</p> :null} 
+      {ConditionError?<p className={classes.errorSpan}>{meta.error}</p> :null} 
       </div>
       <textarea {...input} {...meta}/>
     </>
