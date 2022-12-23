@@ -6,9 +6,9 @@ const CHANGE_NEW_POST_TEXT = 'CHANGE-NEW-POST-TEXT';
 const SET_USER_PROFILE='SET_USER_PROFILE';
 let initialization ={
   DataPosts:[
-    {message:'dgddg', Likes:1500, id:1},
-    {message:'fgfgf',Likes :10, id:2},
-    {message:'ggggg',Likes:0, id:3},
+    // {message:'dgddg', Likes:1500, id:1},
+    // {message:'fgfgf',Likes :10, id:2},
+    // {message:'ggggg',Likes:0, id:3},
   ],
   status:'',
   profile:null,
