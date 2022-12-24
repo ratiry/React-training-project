@@ -7,7 +7,7 @@ import { NavLink } from 'react-router-dom';
 
 const Header = (props)=>{
   let cases_auth = [<Preloader/>,<NavLink to={'/login'}><span>login</span></NavLink>,<span>{props.auth.email}</span>]
-  let Case = -1;
+  let Case = 1;
   if(props.auth.IsFetching === true){
     debugger;;
     Case=0;

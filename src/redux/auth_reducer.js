@@ -16,6 +16,7 @@ export let GetAuthThunk=()=>(dispatch)=>{
       dispatch( IsFetching_action(false));
       dispatch(set_data_user(response.data.data.email,response.data.data.login,response.data.data.id));
     }else{
+      dispatch( IsFetching_action(false));
       dispatch(set_data_user('none','none','none'));
       
     }
