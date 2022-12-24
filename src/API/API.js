@@ -19,6 +19,12 @@ export let GetProfile_API={
 export let auth_API ={
   GetAuth(){
     return instance.get(`auth/me`)
+  },
+  Login(email,password,rememberMe){
+    return instance.post(`auth/login`,{email,password,rememberMe})    
+  },
+  Logout(){
+    return instance.delete(`auth/login`)    
   }
 }
 export let USERS_API= {
