@@ -8,11 +8,14 @@ import { NavLink } from 'react-router-dom';
 const Header = (props)=>{
   let cases_auth = [<Preloader/>,<NavLink to={'/login'}><span>login</span></NavLink>,<span>{props.auth.email}</span>]
   let Case = -1;
-  if(props.auth.email === 'none'){
-    Case=1;
-  }else if(props.auth.email ===null){
+  if(props.auth.IsFetching === true){
+    debugger;;
     Case=0;
+  }else if(props.auth.IsAuth ===null){
+    debugger;
+    Case=1;
   }else{
+    debugger;
     Case =2;
   }
   return(
