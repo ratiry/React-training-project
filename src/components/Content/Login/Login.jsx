@@ -1,4 +1,6 @@
 import { Field, reduxForm } from 'redux-form';
+import { requiredField } from '../../../Utils/validations/validators';
+import Input from '../../Common/Input/Input';
 import classes from './Login.module.scss';
 
 
@@ -8,15 +10,15 @@ let  LoginForm=(props)=>{
       <div className={classes.LoginItems}>
         <div className={classes.LoginItem}>
           <span>Login</span>
-          <Field  component={'input'} name={'Login'}/>
+          <Field  component={Input} name={'Login'} validate={[requiredField]}/>
         </div>
         <div className={classes.LoginItem}>
           <span>Password</span>
-          <Field  component={'input'} name={'Password'}/>
+          <Field  component={Input} name={'Password'} validate={[requiredField]}/>
         </div>
         <div className={classes.LoginItem}>
           <span>Remember me</span>
-          <Field  component={'input'} type={'checkbox'} name={'RemeberMe?'}/>
+          <Field  component={Input} type={'checkbox'} name={'RemeberMe?'}/>
         </div>
       </div>
       <button className={classes.Login_button}>
