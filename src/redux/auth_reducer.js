@@ -29,7 +29,6 @@ export let LoginThunk=(email,password,rememberMe)=>(dispatch)=>{
       dispatch(IsFetching_action(false));
     }else{
       dispatch(IsFetching_action(false));
-      debugger;
     }
   })
 }
@@ -38,6 +37,9 @@ export let LogoutThunk=()=>(dispatch)=>{
   auth_API.Logout().then(response=>{
     if(response.data.resultCode ==0){
       dispatch(set_data_user('none','none','none',false))
+      dispatch(IsFetching_action(false));  
+    }else{
+      dispatch(IsFetching_action(false));  
     }
   })
 }

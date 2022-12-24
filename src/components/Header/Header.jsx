@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom';
 
 
 const Header = (props)=>{
-  let cases_auth = [<Preloader/>,<NavLink to={'/login'}><span>login</span></NavLink>,<span>{props.auth.email}</span>]
+  let cases_auth = [<Preloader/>,<NavLink to={'/login'}><span>login</span></NavLink>,<div className={classes.textContainer}><span>{props.auth.email}</span><button onClick={props.LogoutThunk}>Logout</button></div>]
   let Case = 1;
   if(props.auth.IsFetching === true){
     Case=0;

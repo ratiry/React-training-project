@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 import React from 'react';
 import Header from './Header';
 import { GetAuthThunk } from './../../redux/auth_reducer.js';
-import {set_data_user,IsFetching_action} from './../../redux/auth_reducer.js';
+import {set_data_user,IsFetching_action,LogoutThunk} from './../../redux/auth_reducer.js';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 class HeaderComponent extends React.Component {
@@ -23,7 +23,7 @@ let mapStateToProps=(State)=>{
   }
 }
 let mapDispatchToProps={
-  set_data_user,IsFetching_action,GetAuthThunk
+  set_data_user,IsFetching_action,GetAuthThunk,LogoutThunk
 }
 let composed_Header=compose(
   connect(mapStateToProps,mapDispatchToProps)

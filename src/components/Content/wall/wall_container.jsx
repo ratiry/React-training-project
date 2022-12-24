@@ -52,7 +52,7 @@ let mapDispatchToProps = (dispatch)=>{
   }
 }
 let composed_Wall = compose(
-  WithRedicrectComponent,
+  // WithRedicrectComponent,
   withRouter,
   connect(mapStateToProps,mapDispatchToProps),
 )(Wall_API)

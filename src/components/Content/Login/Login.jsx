@@ -15,11 +15,11 @@ let  LoginForm=(props)=>{
         </div>
         <div className={classes.LoginItem}>
           <span>Password</span>
-          <Field  component={Input} name={'Password'} validate={[requiredField]}/>
+          <Field  component={Input} type='password'  name={'Password'} validate={[requiredField]}/>
         </div>
         <div className={classes.LoginItem}>
           <span>Remember me</span>
-          <Field  component={Input} type={"checkbox"} name={'RememberMe'}/>
+          <Field  component={Input} type="checkbox" name={'RememberMe'}/>
         </div>
       </div>
       <button className={classes.Login_button}>
