@@ -14,7 +14,7 @@ export let GetAuthThunk=()=>(dispatch)=>{
   auth_API.GetAuth().then(response=> {
     if(response.data.resultCode ==0){
       dispatch( IsFetching_action(false));
-      dispatch(set_data_user(response.data.data.email,response.data.data.login,response.data.data.id));
+      dispatch(set_data_user(response.data.data.email,response.data.data.login,response.data.data.id,true));
     }else{
       dispatch( IsFetching_action(false));
       dispatch(set_data_user('none','none','none',false));
@@ -25,7 +25,11 @@ export let LoginThunk=(email,password,rememberMe)=>(dispatch)=>{
   dispatch(IsFetching_action(true));  
   auth_API.Login(email,password,rememberMe).then(response=>{
     if(response.data.resultCode ==0){
-      dispatch(GetAuthThunk())
+      dispatch(GetAuthThunk());
+      dispatch(IsFetching_action(false));
+    }else{
+      dispatch(IsFetching_action(false));
+      debugger;
     }
   })
 }
@@ -52,6 +56,7 @@ export let set_data_user = (email,login,userId,IsAuth)=>{
 export const auth_reducer=(State=initialization,action)=>{
   switch(action.type){
       case SET_USER_DATA:
+        debugger;
         return{
           ...State,
           ...action.data
