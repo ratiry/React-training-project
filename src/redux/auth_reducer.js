@@ -17,8 +17,7 @@ export let GetAuthThunk=()=>(dispatch)=>{
       dispatch(set_data_user(response.data.data.email,response.data.data.login,response.data.data.id));
     }else{
       dispatch( IsFetching_action(false));
-      dispatch(set_data_user('none','none','none'));
-      
+      dispatch(set_data_user('none','none','none',false));
     }
   })
 }
@@ -34,7 +33,7 @@ export let LogoutThunk=()=>(dispatch)=>{
   dispatch(IsFetching_action(true));  
   auth_API.Logout().then(response=>{
     if(response.data.resultCode ==0){
-      dispatch(GetAuthThunk())
+      dispatch(set_data_user('none','none','none',false))
     }
   })
 }
@@ -44,24 +43,17 @@ export let IsFetching_action =(IsFetching)=>{
     IsFetching
   }
 }
-export let set_data_user = (email,login,userId)=>{
+export let set_data_user = (email,login,userId,IsAuth)=>{
   return{
     type:SET_USER_DATA,
-    data:{email,login,userId}
+    data:{email,login,userId,IsAuth}
   }
 }
 export const auth_reducer=(State=initialization,action)=>{
   switch(action.type){
       case SET_USER_DATA:
-        let IsAuth=false;
-        if(action.data.email!=='none'){
-          IsAuth=true;
-        }else{
-          IsAuth=null;
-        }
         return{
           ...State,
-          IsAuth:IsAuth,
           ...action.data
         }
       case IsFetching_const:
