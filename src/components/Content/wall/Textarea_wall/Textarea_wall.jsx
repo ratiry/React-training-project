@@ -8,7 +8,7 @@ let MinLength5 = minLengthCreator(5);
 let TextareaForm=(props)=>{
   return(
     <form  className={classes.textarea_container + ' ' + classes.error} onSubmit={props.handleSubmit}>
-      <Field  component={Textarea} name={'newPost'} validate={[requiredField,MaxLength10,MinLength5]}></Field>
+      <Field  component={Textarea} name={'newPost'} validate={[MaxLength10,MinLength5]}></Field>
       <button>send</button>
   </form>
   )

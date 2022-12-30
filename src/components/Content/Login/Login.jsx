@@ -11,7 +11,7 @@ let  LoginForm=(props)=>{
       <div className={classes.LoginItems}>
         <div className={classes.LoginItem}>
           <span>Login</span>
-          <Field  component={Input} name={'Email'} validate={[requiredField]}/>
+          <Field  component={Input} name={'email'} validate={[requiredField]}/>
         </div>
         <div className={classes.LoginItem}>
           <span>Password</span>
@@ -22,6 +22,9 @@ let  LoginForm=(props)=>{
           <Field  component={Input} type="checkbox" name={'RememberMe'}/>
         </div>
       </div>
+      {props.error && <div className={classes.Summery_error}>
+        <strong>{props.error}</strong>
+      </div>}
       <button className={classes.Login_button}>
         <span>Login</span>
       </button>
