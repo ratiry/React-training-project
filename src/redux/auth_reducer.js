@@ -1,5 +1,5 @@
 import { auth_API } from "../API/API";
-
+import { stopSubmit } from "redux-form";
 const SET_USER_DATA = 'SET_USER_DATA';
 const IsFetching_const='IsFetching';
 let initialization = {
@@ -24,11 +24,14 @@ export let GetAuthThunk=()=>(dispatch)=>{
 export let LoginThunk=(email,password,rememberMe)=>(dispatch)=>{
   dispatch(IsFetching_action(true));  
   auth_API.Login(email,password,rememberMe).then(response=>{
+    debugger;
     if(response.data.resultCode ==0){
       dispatch(GetAuthThunk());
       dispatch(IsFetching_action(false));
     }else{
       dispatch(IsFetching_action(false));
+      let action = stopSubmit('Login',{_error:response.data.messages[0]});
+      dispatch(action);
     }
   })
 }
@@ -58,7 +61,6 @@ export let set_data_user = (email,login,userId,IsAuth)=>{
 export const auth_reducer=(State=initialization,action)=>{
   switch(action.type){
       case SET_USER_DATA:
-        debugger;
         return{
           ...State,
           ...action.data

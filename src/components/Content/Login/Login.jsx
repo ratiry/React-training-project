@@ -22,6 +22,7 @@ let  LoginForm=(props)=>{
           <Field  component={Input} type="checkbox" name={'RememberMe'}/>
         </div>
       </div>
+     {props.error && <div  className={classes.Summery_Error_Container}><span>{props.error}</span> </div>}  
       <button className={classes.Login_button}>
         <span>Login</span>
       </button>
@@ -34,7 +35,6 @@ let Login=(props)=>{
     console.log(formData);
     props.LoginThunk(formData.Email,formData.Password,formData.RememberMe);
   }
-  debugger;
   if(props.IsAuth){
     return <Navigate to={'/Wall'}/>
   }
