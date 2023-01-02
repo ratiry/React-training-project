@@ -6,7 +6,7 @@ let initialization = {
   email:null,
   login:null,
   userId:null,
-  IsAuth:'none',
+  IsAuth:false,
   IsFetching:false
 }
 export let GetAuthThunk=()=>(dispatch)=>{
@@ -17,7 +17,7 @@ export let GetAuthThunk=()=>(dispatch)=>{
       dispatch(set_data_user(response.data.data.email,response.data.data.login,response.data.data.id,true));
     }else{
       dispatch( IsFetching_action(false));
-      dispatch(set_data_user('none','none','none',false));
+      dispatch(set_data_user(false,false,false,false));
     }
   })
 }

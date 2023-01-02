@@ -9,14 +9,15 @@ import { compose } from 'redux';
 import { GetStatusThunk } from './../../../redux/Wall-reducer';
 import { withRouter } from './../../../HOC/WithRouterProps';
 import { UpdateStatusThunk } from './../../../redux/Wall-reducer';
+import { GetAuthThunk } from './../../../redux/auth_reducer';
 
 class Wall_API extends React.Component{
   componentDidMount(){
     let userId = this.props.router.params.userId;
     if(!userId){
-      userId=26570;
+      userId=this.props.userId;
+      debugger;
     }
-    
     this.props.GetProfileThunk(userId);
     this.props.GetStatusThunk(userId);
   }
@@ -29,6 +30,8 @@ class Wall_API extends React.Component{
 let mapStateToProps = (state)=>{
   return{
     Wall:state.Wall,
+    IsAuth:state.auth.IsAuth,
+    userId:state.auth.userId
   }
 }
 let mapDispatchToProps = (dispatch)=>{
@@ -49,6 +52,9 @@ let mapDispatchToProps = (dispatch)=>{
     UpdateStatusThunk:(status)=>{
       dispatch(UpdateStatusThunk(status));
     },
+    GetAuthThunk:()=>{
+      dispatch(GetAuthThunk());
+    }
   }
 }
 let composed_Wall = compose(
