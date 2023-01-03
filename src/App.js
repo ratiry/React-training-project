@@ -9,29 +9,40 @@ import SideBar_container from './components/Sidebar/SideBar_container';
 import  Users_container  from './components/Content/Users/Users_container';
 import HeaderComponent from './components/Header/Header_container';
 import Login from './components/Content/Login/Login';
-function App(props) {
-  return (
-    <BrowserRouter>
-    <div className="App">
-       <HeaderComponent/>
-      <main>
-        <SideBar_container/>
-        <div className ='content'>
-          <Routes>
-            <Route path='/Wall'>
-              <Route path="/Wall/:userId*" element={<Wall_container  />}/>
-              <Route path="/Wall" element={<Wall_container  />}/>
-            </Route>
-            <Route path="/Dialogs*" element={<Dialogs_container/>}/>
-            <Route path ='/Messages*' element={<Messages/>}/>
-            <Route path ='/Users*' element={<Users_container/>}/>
-            <Route path='/login*' element={<Login/>}/>
-          </Routes>
-        </div>
-      </main>
-    </div>
-    </BrowserRouter>
-  );
+import React from 'react';
+import { connect } from 'react-redux';
+import { GetAuthThunk } from './redux/auth_reducer';
+class App extends React.Component {
+  componentDidMount(){
+    this.props.GetAuthThunk();
+  }
+  render(){
+    return (
+      <BrowserRouter>
+      <div className="App">
+         <HeaderComponent/>
+        <main>
+          <SideBar_container/>
+          <div className ='content'>
+            <Routes>
+              <Route path='/Wall'>
+                <Route path="/Wall/:userId*" element={<Wall_container  />}/>
+                <Route path="/Wall" element={<Wall_container  />}/>
+              </Route>
+              <Route path="/Dialogs*" element={<Dialogs_container/>}/>
+              <Route path ='/Messages*' element={<Messages/>}/>
+              <Route path ='/Users*' element={<Users_container/>}/>
+              <Route path='/login*' element={<Login/>}/>
+            </Routes>
+          </div>
+        </main>
+      </div>
+      </BrowserRouter>
+    );
+  }
 }
 
-export default App;
+let mapDispatchToProps={
+  GetAuthThunk
+}
+export default connect(null,mapDispatchToProps)(App);
