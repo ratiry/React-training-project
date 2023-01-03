@@ -12,37 +12,47 @@ import Login from './components/Content/Login/Login';
 import React from 'react';
 import { connect } from 'react-redux';
 import { GetAuthThunk } from './redux/auth_reducer';
+import {Initialize_App_Thunk} from './redux/App-reducer';
+import Preloader from './components/Common/Preloader/Preloader';
 class App extends React.Component {
   componentDidMount(){
-    this.props.GetAuthThunk();
+    this.props.Initialize_App_Thunk();
   }
   render(){
-    return (
-      <BrowserRouter>
-      <div className="App">
-         <HeaderComponent/>
-        <main>
-          <SideBar_container/>
-          <div className ='content'>
-            <Routes>
-              <Route path='/Wall'>
-                <Route path="/Wall/:userId*" element={<Wall_container  />}/>
-                <Route path="/Wall" element={<Wall_container  />}/>
-              </Route>
-              <Route path="/Dialogs*" element={<Dialogs_container/>}/>
-              <Route path ='/Messages*' element={<Messages/>}/>
-              <Route path ='/Users*' element={<Users_container/>}/>
-              <Route path='/login*' element={<Login/>}/>
-            </Routes>
-          </div>
-        </main>
-      </div>
-      </BrowserRouter>
-    );
-  }
+    if(!this.props.IsIninitialized){
+      debugger;
+      return <Preloader/>
+    }else{
+      return (
+        <BrowserRouter>
+        <div className="App">
+           <HeaderComponent/>
+          <main>
+            <SideBar_container/>
+            <div className ='content'>
+              <Routes>
+                <Route path='/Wall'>
+                  <Route path="/Wall/:userId*" element={<Wall_container  />}/>
+                  <Route path="/Wall" element={<Wall_container  />}/>
+                </Route>
+                <Route path="/Dialogs*" element={<Dialogs_container/>}/>
+                <Route path ='/Messages*' element={<Messages/>}/>
+                <Route path ='/Users*' element={<Users_container/>}/>
+                <Route path='/login*' element={<Login/>}/>
+              </Routes>
+            </div>
+          </main>
+        </div>
+        </BrowserRouter>
+      );
+    }
+    }
 }
 
 let mapDispatchToProps={
-  GetAuthThunk
+  GetAuthThunk,Initialize_App_Thunk
 }
-export default connect(null,mapDispatchToProps)(App);
+let mapStateToProps=(State)=>({
+  IsIninitialized:State.App.IsIninitialized
+})
+export default connect(mapStateToProps  ,mapDispatchToProps)(App);

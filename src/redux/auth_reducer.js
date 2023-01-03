@@ -11,7 +11,7 @@ let initialization = {
 }
 export let GetAuthThunk=()=>(dispatch)=>{
   dispatch(IsFetching_action(true));
-  auth_API.GetAuth().then(response=> {
+  return auth_API.GetAuth().then(response=> {
     if(response.data.resultCode ==0){
       dispatch( IsFetching_action(false));
       dispatch(set_data_user(response.data.data.email,response.data.data.login,response.data.data.id,true));
@@ -24,7 +24,6 @@ export let GetAuthThunk=()=>(dispatch)=>{
 export let LoginThunk=(email,password,rememberMe)=>(dispatch)=>{
   dispatch(IsFetching_action(true));  
   auth_API.Login(email,password,rememberMe).then(response=>{
-    debugger;
     if(response.data.resultCode ==0){
       dispatch(GetAuthThunk());
       dispatch(IsFetching_action(false));

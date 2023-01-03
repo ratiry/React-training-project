@@ -16,7 +16,6 @@ class Wall_API extends React.Component{
     let userId = this.props.router.params.userId;
     if(!userId){
       userId=this.props.userId;
-      debugger;
     }
     this.props.GetProfileThunk(userId);
     this.props.GetStatusThunk(userId);
