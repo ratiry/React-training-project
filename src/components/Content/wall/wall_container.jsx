@@ -10,19 +10,32 @@ import { GetStatusThunk } from './../../../redux/Wall-reducer';
 import { withRouter } from './../../../HOC/WithRouterProps';
 import { UpdateStatusThunk } from './../../../redux/Wall-reducer';
 import { GetAuthThunk } from './../../../redux/auth_reducer';
+import { Navigate } from 'react-router-dom';
 
 class Wall_API extends React.Component{
+  state={
+    redirect:false
+  }
   componentDidMount(){
     let userId = this.props.router.params.userId;
     if(!userId){
-      userId=this.props.userId;
+      if(!this.props.userId){
+        this.setState({
+          redirect:true
+        })
+      }else{
+        userId=this.props.userId;
+      }
     }
     this.props.GetProfileThunk(userId);
     this.props.GetStatusThunk(userId);
   }
   render(){
+    if(this.state.redirect){
+      return <Navigate to={'/Login'}/>
+    }
     return(
-      <Wall UpdateStatusThunk={this.props.UpdateStatusThunk}  Wall={this.props.Wall} addPost_0={this.props.addPost_0} Textarea_altering={this.props.Textarea_altering} IsAuth={this.props.IsAuth} id={this.props.router.params.userId}/>
+       <Wall UpdateStatusThunk={this.props.UpdateStatusThunk}  Wall={this.props.Wall} addPost_0={this.props.addPost_0} Textarea_altering={this.props.Textarea_altering} IsAuth={this.props.IsAuth} id={this.props.router.params.userId}/>
     )
   }
 }
