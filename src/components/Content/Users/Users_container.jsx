@@ -4,6 +4,7 @@ import React from 'react';
 import Users from './Users';
 import { USERS_API } from '../../../API/API';
 import { compose } from 'redux';
+import { GetPagesize, GetUsersReselect, GetTotalUsersCount, GetCurrentPage, GetBeforeCurrentPageArray, GetAfterCurrentPageArray, GetLengthPageArray, GetIsFetching, GetIsfollowingInProgress } from './../../../redux/Users-reselectors';
 class UsersAPI extends React.Component{
   componentDidMount(){
     this.props.GetUsersThunkCreator(this.props.CurrentPage,this.props.PageSize);
@@ -34,7 +35,7 @@ class UsersAPI extends React.Component{
     AfterCurrentPageArray={this.props.AfterCurrentPageArray}
     OnButtonPageChange={this.OnButtonPageChange}
     CurrentPage={this.props.CurrentPage}
-    Users_array={this.props.Users.Users_array}
+    Users_array={this.props.Users_array}
     follow={this.props.follow}
     unfollow={this.props.unfollow}
     IsFetching={this.props.IsFetching}
@@ -47,15 +48,15 @@ class UsersAPI extends React.Component{
 }
 let mapStateToProps=(state)=>{
   return{
-    Users:state.Users,
-    PageSize:state.Users.PageSize,
-    TotalUsersCount:state.Users.TotalUsersCount,
-    CurrentPage:state.Users.CurrentPage,
-    BeforeCurrentPageArray:state.Users.BeforeCurrentPageArray,
-    AfterCurrentPageArray:state.Users.AfterCurrentPageArray,
-    LengthPageArray:state.Users.LengthPageArray,
-    IsFetching:state.Users.IsFetching,
-    IsfollowingInProgress:state.Users.IsfollowingInProgress
+    Users_array:GetUsersReselect(state),
+    PageSize:GetPagesize(state),
+    TotalUsersCount:GetTotalUsersCount(state),
+    CurrentPage:GetCurrentPage(state),
+    BeforeCurrentPageArray:GetBeforeCurrentPageArray(state),
+    AfterCurrentPageArray:GetAfterCurrentPageArray(state),
+    LengthPageArray:GetLengthPageArray(state),
+    IsFetching:GetIsFetching(state),
+    IsfollowingInProgress:GetIsfollowingInProgress(state)
   }
 }
 let mapDispatchToProps={
