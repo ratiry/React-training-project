@@ -1,5 +1,7 @@
 import classes from './wall.module.scss';
 import React from 'react';
+import { useState } from 'react';
+import { useEffect } from 'react';
 class StatusProfile extends React.Component{
   state={
     editMode:false,
@@ -38,4 +40,34 @@ class StatusProfile extends React.Component{
     )
   }
 }
-export default StatusProfile;
+let StatusProfileWithHooks=(props)=>{
+  let [status,editStatus] = useState(props.status);
+  let [editMode,setEditMode]=useState(false);
+
+  let SetEditMode=(variable)=>{
+    setEditMode(variable);
+  }
+  useEffect(()=>{
+    debugger; 
+    editStatus(props.status)
+  },[props.status])
+  let SetStatus=(e)=>{
+    editStatus(e.currentTarget.value);
+  }
+  let ActivateEditMode=()=>{
+    setEditMode(true);
+  }
+  let DisableEditMode=()=>{
+    setEditMode(false);
+    props.UpdateStatusThunk(status);
+  }
+    return(
+      <div>
+        {editMode ?<input onChange={SetStatus} autoFocus={true} value={status} onBlur={DisableEditMode} type="text" />:
+        <span onDoubleClick={ActivateEditMode}>{props.status ? props.status:'----'}</span> }
+      </div>
+    )
+  
+}
+// export default StatusProfile;
+export default StatusProfileWithHooks;
