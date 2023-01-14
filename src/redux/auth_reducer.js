@@ -22,7 +22,7 @@ export let GetAuthThunk=()=>(dispatch)=>{
   })
 }
 export let LoginThunk=(email,password,rememberMe)=>(dispatch)=>{
-  dispatch(IsFetching_action(true));  
+  dispatch(IsFetching_action(true)); 
   auth_API.Login(email,password,rememberMe).then(response=>{
     if(response.data.resultCode ==0){
       dispatch(GetAuthThunk());

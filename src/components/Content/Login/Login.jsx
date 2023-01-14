@@ -11,7 +11,7 @@ let  LoginForm=(props)=>{
       <div className={classes.LoginItems}>
         <div className={classes.LoginItem}>
           <span>Login</span>
-          <Field  component={Input} name={'Email'} validate={[requiredField]}/>
+          <Field  component={Input} name={'email'} validate={[requiredField]}/>
         </div>
         <div className={classes.LoginItem}>
           <span>Password</span>
